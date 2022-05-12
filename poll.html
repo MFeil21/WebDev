@@ -12,7 +12,6 @@
         }
         section {
             float: left;
-            width: 33%;
         }
         fieldset {
             min-height: 200px;
@@ -23,13 +22,37 @@
             clear: left;
             padding-top: 5px;
         }
+        img {
+            max-width: 150px;
+            max-height: 150px;
+        }
     </style>
 </head>
 <body>  
     <main title="Content">
-        <section title="Kandidaten">
+        <section title="Kandidaten" action="poll.php">
             <fieldset>
                 <legend>Kandidaten</legend>
+                <figure id="1">
+                    <img src="candidate.png"  alt="Kandidat">
+                    <figcaption>Kandidat 1</figcaption>
+                </figure>
+                <figure id="2">
+                    <img src="candidate.png"  alt="Kandidat">
+                    <figcaption>Kandidat 2</figcaption>
+                </figure>
+                <figure id="3">
+                    <img src="candidate.png"  alt="Kandidat">
+                    <figcaption>Kandidat 3</figcaption>
+                </figure>
+                <figure id="4">
+                    <img src="candidate.png"  alt="Kandidat">
+                    <figcaption>Kandidat 4</figcaption>
+                </figure>
+                <figure id="5">
+                    <img src="candidate.png"  alt="Kandidat">
+                    <figcaption>Kandidat 5</figcaption>
+                </figure>
             </fieldset>
     </main>
     <footer title="Disclaimer">
@@ -41,6 +64,29 @@
         </ul>
         gemäß <a href="https://www.gesetze-im-internet.de/gg/art_38.html" title="Grundgesetz">Grundgesetz.</a>
     </footer>
+
+
+
+    <!-- Test Button für Submit&Forward PHP - Daten werden nicht übergeben, da nicht in Fom enthalten -->
+    <form name="stimmen" method="post" action="poll.php">
+    <input type="submit" name="Absenden" id="Absenden" value="Absenden">
+    </form>
+
+    <!-- function ist nicht in der Lage, Daten zu übergeben an php-File  -->
+    <script type="text/javascript">
+        let candidates = document.querySelectorAll("figure")
+        candidates.forEach(item => {
+            item.onclick = (event) => {
+                console.log("you voted candidate " + item.id)
+                fetchcall()
+                function fetchcall () {
+                    var id = item.id;
+                    fetch("poll.php", { method: "POST", body: id })
+                    console.log("Log innerhalb der funktion")
+                    }
+                }
+            })
+    </script>
   
 </body>
 </html>
