@@ -25,6 +25,7 @@ if ($verbindung->query($sqldbcommand) === TRUE) {
   } else {
     echo "Fehler: " . $sqldbcommand . "<br>" . $verbindung->error;
   }
-$sqlstart = mysqli_query($verbindung, $sqldbcommand);
+
+header( 'Location: poll.html' );
 
 ?>

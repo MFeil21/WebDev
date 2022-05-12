@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.4.24-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: db_users
+-- Host: localhost    Database: db_kandidaten
 -- ------------------------------------------------------
 -- Server version	10.4.24-MariaDB
 
@@ -16,30 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `db_users`
+-- Table structure for table `db_kandidaten`
 --
 
-DROP TABLE IF EXISTS `db_users`;
+DROP TABLE IF EXISTS `db_kandidaten`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `db_users` (
+CREATE TABLE `db_kandidaten` (
   `id` mediumint(9) NOT NULL AUTO_INCREMENT,
-  `pseudonym` char(25) NOT NULL,
   `vorname` char(25) DEFAULT NULL,
   `nachname` char(25) DEFAULT NULL,
-  `geburtsjahr` mediumint(4) DEFAULT NULL,
+  `stimmen` mediumint(9) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `db_users`
+-- Dumping data for table `db_kandidaten`
 --
 
-LOCK TABLES `db_users` WRITE;
-/*!40000 ALTER TABLE `db_users` DISABLE KEYS */;
-INSERT INTO `db_users` VALUES (1,'Neue Datenbank, neues Glü','','',0),(2,'Neue Datenbank, neues Glü','','',0),(3,'die ID muss zählen','','',0),(4,'die ID muss zählen','hans','wurst',0);
-/*!40000 ALTER TABLE `db_users` ENABLE KEYS */;
+LOCK TABLES `db_kandidaten` WRITE;
+/*!40000 ALTER TABLE `db_kandidaten` DISABLE KEYS */;
+INSERT INTO `db_kandidaten` VALUES (1,'Max','Mustermann',0),(2,'Maxi','Musterfrau',0),(3,'Hans','Wurst',0),(4,'Hans','Dampf',0),(5,'Hansi','Hinterseer',0);
+/*!40000 ALTER TABLE `db_kandidaten` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-12 17:01:45
+-- Dump completed on 2022-05-12 17:02:26
