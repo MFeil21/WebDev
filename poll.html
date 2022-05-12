@@ -31,6 +31,7 @@
 <body>  
     <main title="Content">
         <section title="Kandidaten" action="poll.php">
+            <!-- Statisch - foreach-Schleife fuer alle Kandidaten aus DB waere schoener -->
             <fieldset>
                 <legend>Kandidaten</legend>
                 <figure id="1">
@@ -63,28 +64,29 @@
         <li><data value="202">(3) Das Nähere bestimmt ein Bundesgesetz.</data></li>
         </ul>
         gemäß <a href="https://www.gesetze-im-internet.de/gg/art_38.html" title="Grundgesetz">Grundgesetz.</a>
+        <hr>
+        <button onclick="location.href = 'main.html';" >Let's go back...Home</button>
     </footer>
 
 
 
-    <!-- Test Button für Submit&Forward PHP - Daten werden nicht übergeben, da nicht in Fom enthalten -->
-    <form name="stimmen" method="post" action="poll.php">
-    <input type="submit" name="Absenden" id="Absenden" value="Absenden">
+    <!-- Hidden InputField&Submitbutton - Notwendig fuer Uebergabe der Daten an PHP & mySQL -->
+    <form name="stimmen" id="stimmen" method="post" action="poll.php">
+    <input type="hidden" name="id" id="id">
+    <input type="hidden" name="Absenden" id="Absenden" value="Absenden">
     </form>
 
-    <!-- function ist nicht in der Lage, Daten zu übergeben an php-File  -->
     <script type="text/javascript">
         let candidates = document.querySelectorAll("figure")
         candidates.forEach(item => {
             item.onclick = (event) => {
-                console.log("you voted candidate " + item.id)
-                fetchcall()
-                function fetchcall () {
-                    var id = item.id;
-                    fetch("poll.php", { method: "POST", body: id })
-                    console.log("Log innerhalb der funktion")
-                    }
+                document.getElementById("id").value = item.id;
+                submitData()
                 }
+            
+            function submitData() {
+                document.getElementById("stimmen").submit();
+            }
             })
     </script>
   
