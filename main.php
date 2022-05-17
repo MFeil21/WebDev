@@ -17,6 +17,9 @@ if(!is_null($_POST['nachname']))
 if(!is_null($_POST['geburtsjahr']))
     $geburtsjahr = $_POST['geburtsjahr'];
 
+//SQL Query, ob Pseudonym bereits existiert
+//Falls ja: Popup "Existiert bereits, wurde mit neuer ID erneut angelegt" 
+
 $sqldbcommand = "INSERT INTO db_users (`Id`, `pseudonym`, `vorname`, `nachname`, `geburtsjahr`) 
 VALUES ('0', '$pseudonym', '$vorname', '$nachname', '$geburtsjahr')";
 

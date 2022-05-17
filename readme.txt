@@ -9,10 +9,13 @@ final Check
 /
 //
 ///
-Es muessen die Dateien main.html, main.php, poll.html, result.html, script.js, style.css nach C:\xampp\htdocs\Testat02 kopiert werden.
-Aktuell ist nur in main.html&php relevanter Content
+Es muessen die Dateien
+main.html, main.php
+poll.html, poll.php
+result.html, result.php
+nach C:\xampp\htdocs\Testat02 kopiert werden.
+Aktuell ist die Datei result.html nicht genutzt
 Zuseatzlich werden beide Datenbanken benoetigt. 
-(Warum ich nicht innerhalb einer DB einfach zwei Tables gemacht habe, frage ich mich auch...)
 DB-Import:
 Datei "db_users.sql" nach C:\xampp\mysql\bin kopieren
 CMD öffnen:
