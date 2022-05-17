@@ -12,23 +12,12 @@ $tablename = "db_kandidaten";
 $columns = ['id', 'vorname', 'nachname', 'stimmen'];
 $suche="SELECT id, nachname, vorname, stimmen FROM db_kandidaten";
 $abfrageergebnis= mysqli_query($verbindung, $suche);
-
-echo "<table border='1'>
-<tr>
-<th>Nachname</th>
-<th>Vorname</th>
-<th>Stimmen</th>
-</tr>";
-
-while($row = mysqli_fetch_array($abfrageergebnis))
-{
-echo "<tr>";
-echo "<td>" . $row['nachname'] . "</td>";
-echo "<td>" . $row['vorname'] . "</td>";
-echo "<td>" . $row['stimmen'] . "</td>";
-echo "</tr>";
+while ($row = mysqli_fetch_row($abfrageergebnis)) {
+  printf("ID %s Nachname %s |||", $row[0], $row[1]);
+  printf("ID %s Vorname %s |||", $row[0], $row[2]);
+  printf("ID %s Stimmzahl %s |||", $row[0], $row[3]);
 }
-echo "</table>";
 
-mysqli_close($verbindung);
+
+
 ?>
