@@ -1,94 +1,88 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
     <meta name="author" content="Team MathesFeilWetzl" charset="utf-8">
-    <meta name="description" content="Umfrage">
-    <title>Umfrage</title>
-    <style media="screen" type="text/css">
-        header {
-            display: flex;
-            justify-content: center;
-        }
-        }
-        section {
-            float: left;
-        }
-        fieldset {
-            min-height: 200px;
-            display:grid;
-            grid: auto / auto auto auto;
-        }
-        footer {
-            clear: left;
-            padding-top: 5px;
-        }
-        img {
-            max-width: 150px;
-            max-height: 150px;
-        }
-    </style>
-</head>
-<body>  
-    <main title="Content">
-        <section title="Kandidaten" action="poll.php">
-            <!-- Statisch - foreach-Schleife fuer alle Kandidaten aus DB waere schoener -->
-            <fieldset>
-                <legend>Kandidaten</legend>
-                <figure id="1">
-                    <img src="candidate.png"  alt="Kandidat">
-                    <figcaption>Kandidat 1</figcaption>
-                </figure>
-                <figure id="2">
-                    <img src="candidate.png"  alt="Kandidat">
-                    <figcaption>Kandidat 2</figcaption>
-                </figure>
-                <figure id="3">
-                    <img src="candidate.png"  alt="Kandidat">
-                    <figcaption>Kandidat 3</figcaption>
-                </figure>
-                <figure id="4">
-                    <img src="candidate.png"  alt="Kandidat">
-                    <figcaption>Kandidat 4</figcaption>
-                </figure>
-                <figure id="5">
-                    <img src="candidate.png"  alt="Kandidat">
-                    <figcaption>Kandidat 5</figcaption>
-                </figure>
-            </fieldset>
-    </main>
-    <footer title="Disclaimer">
-        <p> Art. 38</p>
-        <ul>
-        <li><data value="200">(1) Die Abgeordneten des Deutschen Bundestages werden in allgemeiner, unmittelbarer, freier, gleicher und geheimer Wahl gewählt. Sie sind Vertreter des ganzen Volkes, an Aufträge und Weisungen nicht gebunden und nur ihrem Gewissen unterworfen.</data></li>
-        <li><data value="201">(2) Wahlberechtigt ist, wer das achtzehnte Lebensjahr vollendet hat; wählbar ist, wer das Alter erreicht hat, mit dem die Volljährigkeit eintritt.</data></li>
-        <li><data value="202">(3) Das Nähere bestimmt ein Bundesgesetz.</data></li>
-        </ul>
-        gemäß <a href="https://www.gesetze-im-internet.de/gg/art_38.html" title="Grundgesetz">Grundgesetz.</a>
-        <hr>
-        <button onclick="location.href = 'main.html';" >Let's go back...Home</button>
-    </footer>
+    <title>Stimmangabe</title>
+    <link rel="stylesheet" href="style.css" >
+  </head>
+  <body>
+    <div class="page">
 
+      <div class="leftBox">
 
+        <div class="rightBox">
 
-    <!-- Hidden InputField&Submitbutton - Notwendig fuer Uebergabe der Daten an PHP & mySQL -->
-    <form name="stimmen" id="stimmen" method="post" action="poll.php">
-    <input type="hidden" name="id" id="id">
-    <input type="hidden" name="Absenden" id="Absenden" value="Absenden">
-    </form>
+    <!-- linker Bereich -->
 
-    <script type="text/javascript">
-        let candidates = document.querySelectorAll("figure")
-        candidates.forEach(item => {
-            item.onclick = (event) => {
-                document.getElementById("id").value = item.id;
-                submitData()
-                }
-            
-            function submitData() {
-                document.getElementById("stimmen").submit();
-            }
-            })
-    </script>
-  
-</body>
+          <div id="titleBar">
+            <h2>Personendaten:</h2>
+            <br>
+            <hr color="orange">
+          </div>
+
+          <main title="InputElements">
+            <section id="label" title="Labels">
+              <label>Vorname*</label>
+              <label>Nachname*</label>
+              <label>Geburtsdatum*</label>
+              <label>Studiengang*</label>
+            </section>
+            <section id="field" title="Fields">
+              <input type="text" name="vorname"/>
+              <input type="text" name="nachname"/>
+              <input type="text" name="Geburtsdatum"/>
+              <select name="Studiengang" id="Studiengang">
+                <optgroup label="Fakultät Informatik">
+                  <option disabled selected value>- bitte auswählen -</option>
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Informatik">Informatik</option>
+                  <option value="Medieninformatik">Medieninformatik</option>
+                  <option value="Mobile Computing">Mobile Computing</option>
+                  <option value="Wirtschaftsinformatik">Wirtschaftsinformatik</option>
+                  <option value="Master Informatik">Master Informatik</option>
+                  <option value="Master Applied Research in Computer Science">Master Applied Research in Computer Science</option>
+                  <option value="Master Software Engineering for Industrial Applications">Master Software Engineering for Industrial Applications</option>
+                  <option value="Verwaltungsinformatik">Verwaltungsinformatik</option>
+                <optgroup label="andere Fakultät">
+              </select>
+            </section>
+          </main>
+
+          <footer title="Paragraph">
+              <p> <b>Art. 38</b></p>
+              <ul>
+              <li><data value="200">(1) Die Abgeordneten des Deutschen Bundestages werden in allgemeiner, unmittelbarer, freier, gleicher und geheimer Wahl gewählt. <br>Sie sind Vertreter des ganzen Volkes, an Aufträge und Weisungen nicht gebunden und nur ihrem Gewissen unterworfen.</data></li>
+              <li><data value="201">(2) Wahlberechtigt ist, wer das achtzehnte Lebensjahr vollendet hat; <br>wählbar ist, wer das Alter erreicht hat, mit dem die Volljährigkeit eintritt.</data></li>
+              <li><data value="202">(3) Das Nähere bestimmt ein Bundesgesetz.</data></li>
+              </ul>
+              gemäß <a href="https://www.gesetze-im-internet.de/gg/art_38.html" title="Grundgesetz">Grundgesetz.</a>
+              <br><br>
+              <hr color="orange">
+              <br>
+              <a href="result.html" id="button">Stimme abgeben</a>
+          </footer>
+
+        </div>
+
+    <!-- rechter Bereich -->
+
+        <div class="toggle-buttons">
+          <input type="radio" id="b1" name="eine Stimme"/>
+          <label for="b1"><b>DDP</b><br>Die Party-Partei</label>
+          <input type="radio" id="b2" name="eine Stimme"/>
+          <label for="b2"><b>MUT</b><br>Mensch-Umwelt-Tierschutz</label>
+          <input type="radio" id="b3" name="eine Stimme"/>
+          <label for="b3"><b>FBI</b><br>Freie Bürgerinitiative</label>
+          <input type="radio" id="b4" name="eine Stimme"/>
+          <label for="b4"><b>LUST</b><br>Liste unabhängiger Studierender</label>
+          <input type="radio" id="b5" name="eine Stimme"/>
+          <label for="b5"><b>FFF</b><br>Freibier for Future</label>
+          <input type="radio" id="b6" name="eine Stimme"/>
+          <label for="b6"><b>fNEP</b><br>für Nicht-/Erst- und Protestwähler</label>
+        </div>
+
+      </div>
+    </div>
+  </body>
 </html>

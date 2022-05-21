@@ -1,64 +1,30 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
     <meta name="author" content="Team MathesFeilWetzl" charset="utf-8">
-    <meta name="description" content="Umfrageergebnis">
-    <title>Umfrageergebnis</title>
-    <style media="screen" type="text/css">
-        header {
-            display: flex;
-            justify-content: center;
-        }
-        }
-        section {
-            float: left;
-            width: 33%;
-        }
-        fieldset {
-            min-height: 200px;
-            display:grid;
-            grid: auto / auto auto auto;
-        }
-        footer {
-            clear: left;
-            padding-top: 5px;
-        }
-    </style>
-</head>
-<body>  
-    <main title="Content">
-        <section title="Kandidaten und Stimmzahlen">
-            <fieldset>
-                <legend>Kandidaten und Stimmzahlen</legend>
-                <table>
-                    <tr>
-                      <th>Nachname</th>
-                      <th>Vorname</th>
-                      <th>Stimmen (Absolut)</th>
-                      <th>Stimmen (Prozent)</th>
-                    </tr>
+    <title>Result</title>
+    <link rel="stylesheet" href="style.css" >
+  </head>
+  <body>
+    <div class="page">
+      <div class="leftBox">
 
-                    <tr>
-                      <td>abc</td>
-                      <td>def</td>
-                      <td>12</td>
-                      <td>34%</td>
-                    </tr>
-                  </table>
-            </fieldset>
-        </section>
-    </main>
-    <footer title="Disclaimer">
-        Alle Ergebnisse ohne Gewähr
-        <hr>
-        <button onclick="location.href = 'main.html';" >Let's go back...Home</button>
-    </footer>
+        <!-- NavBar -->
+        <nav class="NavBar" style="--items: 4;">
+          <ul>
+            <li><a class="active" href="#Wahlergebnis">Wahlergebnis</a></li>
+            <li><a href="#news">Sitzverteilung</a></li>
+            <li><a href="#contact">Auswertung nach Alter</a></li>
+            <li><a href="#about">Auswertung nach Studiengang</a></li>
+          </ul>
+        </nav>
 
-    <script type="text/javascript">
+        <!-- Charts -->
+        <div id="container">
 
-    </script>
-
-    
-  
-</body>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
