@@ -25,7 +25,8 @@
 			summeErgebnis += j
 		}
 	}	
-	//Ermittle die vollen Sitze
+
+	//Ermittlung der vollen Sitze
 	var sitze = 20
 	var übrig = sitze
 	var rest = []
@@ -63,9 +64,19 @@
 				lose--
 			}
 		}
+
+		//Theoretisch würden hier verlost werden. Bei einer aktiven Wahl ist das natürlich vor Wahlende unmöglich da sich das Ergebnis bei jedem Gleichstand neu erlosen würde.
+		// Die fehlenden Sitze werden einfach vorerst ignoriert, in der Konsole wird der Vollständigkeithalber aber angezeigt dass hier ein Gleichstand herrscht. 
 		else {
 			console.log("Gleichstand = " + gleichstand)
 			break
 		}
 	}
-console.log(ergebnis)
+	console.log(ergebnis)
+
+	//Poll Bestätigung nur möglich wenn alle Felder ausgefüllt wurden. 
+	function stimmeAbgeben() {
+		if(document.getElementById("Vorname").value.length !== 0 && document.getElementById("Nachname").value.length !== 0 && document.getElementById("Geburtsdatum").value.length !== 0 && document.getElementById("Studiengang").value.length !== 0 && (b1.checked || b2.checked || b3.checked || b4.checked || b5.checked || b6.checked)){
+			window.location.href = 'result.html'
+		} else alert("Bitte alle Pflichtfelder ausfüllen und ihrer Demokratischen Pflicht nachkommen indem Sie eine Partei wählen.")
+	}

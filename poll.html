@@ -29,9 +29,9 @@
               <label>Studiengang*</label>
             </section>
             <section id="field" title="Fields">
-              <input type="text" name="vorname"/>
-              <input type="text" name="nachname"/>
-              <input type="text" name="Geburtsdatum"/>
+              <input type="text" id ="Vorname" name="vorname"/>
+              <input type="text" id ="Nachname" name="nachname"/>
+              <input type="date" id ="Geburtsdatum" name="Geburtsdatum"/>
               <select name="Studiengang" id="Studiengang">
                 <optgroup label="Fakultät Informatik">
                   <option disabled selected value>- bitte auswählen -</option>
@@ -44,7 +44,8 @@
                   <option value="Master Applied Research in Computer Science">Master Applied Research in Computer Science</option>
                   <option value="Master Software Engineering for Industrial Applications">Master Software Engineering for Industrial Applications</option>
                   <option value="Verwaltungsinformatik">Verwaltungsinformatik</option>
-                <optgroup label="andere Fakultät">
+                <optgroup label="Sonstiges">
+                  <option value="andere Fakultät">andere Fakultät</option>
               </select>
             </section>
           </main>
@@ -60,7 +61,7 @@
               <br><br>
               <hr color="orange">
               <br>
-              <a href="result.html" id="button">Stimme abgeben</a>
+              <a onclick="stimmeAbgeben()" id="button">Stimme abgeben</a>
           </footer>
 
         </div>
@@ -73,7 +74,7 @@
           <input type="radio" id="b2" name="eine Stimme"/>
           <label for="b2"><b>MUT</b><br>Mensch-Umwelt-Tierschutz</label>
           <input type="radio" id="b3" name="eine Stimme"/>
-          <label for="b3"><b>FBI</b><br>Freie Bürgerinitiative</label>
+          <label for="b3"><b>NERD</b><br>Netzwerk engagierter Richter und Dichter</label>
           <input type="radio" id="b4" name="eine Stimme"/>
           <label for="b4"><b>LUST</b><br>Liste unabhängiger Studierender</label>
           <input type="radio" id="b5" name="eine Stimme"/>
@@ -85,4 +86,6 @@
       </div>
     </div>
   </body>
+
+  <script src = "script.js"></script>
 </html>
