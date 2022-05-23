@@ -29,9 +29,9 @@
               <label>Studiengang*</label>
             </section>
             <section id="field" title="Fields">
-              <input type="text" name="vorname"/>
-              <input type="text" name="nachname"/>
-              <input type="text" name="Geburtsdatum"/>
+              <input type="text" id ="Vorname" name="vorname"/>
+              <input type="text" id ="Nachname" name="nachname"/>
+              <input type="date" id ="Geburtsdatum" name="Geburtsdatum"/>
               <select name="Studiengang" id="Studiengang">
                 <optgroup label="Fakultät Informatik">
                   <option disabled selected value>- bitte auswählen -</option>
@@ -61,7 +61,7 @@
               <br><br>
               <hr color="orange">
               <br>
-              <a href="result.html" id="button">Stimme abgeben</a>
+              <a onclick="stimmeAbgeben()" id="button">Stimme abgeben</a>
           </footer>
 
         </div>
@@ -86,4 +86,6 @@
       </div>
     </div>
   </body>
+
+  <script src = "script.js"></script>
 </html>
