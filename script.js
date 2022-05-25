@@ -78,7 +78,6 @@
 			window.location.href = 'result.html'
 		} else alert("Bitte alle Pflichtfelder ausfüllen und ihrer Demokratischen Pflicht nachkommen indem Sie eine Partei wählen.")
 	}
-
 	//Diagramme Klasse Partei
 	const partei = [
 		{name: "DPP", wähler: stimmen[0], mandate: ergebnis[0], farbe : "#3366ff"},
