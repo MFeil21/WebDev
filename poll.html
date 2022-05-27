@@ -22,17 +22,19 @@
           </div>
 
           <main title="InputElements">
-            <section id="label" title="Labels">
-              <label>Vorname*</label>
-              <label>Nachname*</label>
-              <label>Geburtsdatum*</label>
-              <label>Studiengang*</label>
-            </section>
-            <section id="field" title="Fields">
-              <input type="text" id ="Vorname" name="vorname"/>
-              <input type="text" id ="Nachname" name="nachname"/>
-              <input type="date" id ="Geburtsdatum" name="Geburtsdatum"/>
-              <select name="Studiengang" id="Studiengang">
+          <fieldset>
+            <form name="benutzerdaten" method="post" action="main.php">
+              <label for="vorname" id="label">Vorname*</label>
+              <input type="text" id ="field" name="vorname"/>
+              </p>
+              <label for="nachname" id="label">Nachname*</label>
+              <input type="text" id ="field" name="nachname"/>
+              </p>
+              <label for="geburtsdatum" id="label">Geburtsdatum*</label>
+              <input type="date" id ="field" name="Geburtsdatum"/>
+              </p>
+              <label for="studiengang" id="label">Studiengang*</label>
+              <select name="Studiengang" id="field">
                 <optgroup label="Fakultät Informatik">
                   <option disabled selected value>- bitte auswählen -</option>
                   <option value="Computer Science">Computer Science</option>
@@ -47,7 +49,8 @@
                 <optgroup label="Sonstiges">
                   <option value="andere Fakultät">andere Fakultät</option>
               </select>
-            </section>
+            </form>
+          </fieldset>
           </main>
 
           <footer title="Paragraph">
