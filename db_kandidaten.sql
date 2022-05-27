@@ -24,11 +24,11 @@ DROP TABLE IF EXISTS `db_kandidaten`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `db_kandidaten` (
   `id` mediumint(9) NOT NULL AUTO_INCREMENT,
-  `vorname` char(25) DEFAULT NULL,
-  `nachname` char(25) DEFAULT NULL,
+  `kurzname` varchar(25) DEFAULT NULL,
+  `name` varchar(25) DEFAULT NULL,
   `stimmen` mediumint(9) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `db_kandidaten` (
 
 LOCK TABLES `db_kandidaten` WRITE;
 /*!40000 ALTER TABLE `db_kandidaten` DISABLE KEYS */;
-INSERT INTO `db_kandidaten` VALUES (1,'Max','Mustermann',0),(2,'Maxi','Musterfrau',0),(3,'Hans','Wurst',0),(4,'Hans','Dampf',0),(5,'Hansi','Hinterseer',0);
+INSERT INTO `db_kandidaten` VALUES (1,'DPP','Die Party-Partei',1),(2,'MUT','Mensch-Umwelt-Tierschutz',0),(3,'NERD','Netzwerk engagierter Rich',1),(4,'LUST','Liste unabhängiger Studie',0),(5,'FFF','Freibier for Future',1),(6,'fNEP','für Nicht-/Erst- und Prot',0);
 /*!40000 ALTER TABLE `db_kandidaten` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-12 17:02:26
+-- Dump completed on 2022-05-27 15:37:01
