@@ -25,7 +25,7 @@
           <fieldset>
             <form name="benutzerdaten" method="post" action="poll.php">
               <label for="vorname" id="label">Vorname*</label>
-              <input type="text" id ="vorname" name="vorname"/>
+              <input type="text" id ="vorname2" name="vorname"/>
               </p>
               <label for="nachname" id="label">Nachname*</label>
               <input type="text" id ="nachname" name="nachname"/>
@@ -37,6 +37,9 @@
               <hr>
               <input type="submit" name="Absenden" id="Absenden" value="Absenden">
               <hr>
+              <!-- Hidden Input Fields fuer Merge der beiden Forms-->
+              <input type="hidden" id ="idTemp" name="id"/>
+
               
               <label for="studiengang" id="label">Studiengang*</label>
               <select name="Studiengang" id="field">
@@ -95,7 +98,7 @@
     </div>
   </body>
 
-  <!-- Hidden InputField&Submitbutton - Notwendig fuer Uebergabe der Daten an PHP & mySQL -->
+  <!-- Hidden InputField&Submitbutton - Notwendig fuer Uebergabe der ID des Kandidaten an PHP & mySQL -->
   <form name="stimmen" id="stimmen" method="post" action="poll.php">
     <input type="hidden" name="id" id="id">
     <input type="hidden" name="Absenden" id="Absenden" value="Absenden">
@@ -106,13 +109,11 @@
       if (item.type == "radio")
         item.onclick = (event) => {
           document.getElementById("id").value = item.id;
-          submitData()
+          document.getElementById("idTemp").value = document.getElementById("id").value;
+
             }
-        
-        function submitData() {
-            document.getElementById("stimmen").submit();
-        }
         })
+        
   </script>
 
   <script src = "script.js"></script>
