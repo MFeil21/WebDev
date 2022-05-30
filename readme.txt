@@ -1,9 +1,7 @@
 
 ///
-Es muessen die Dateien
-main.html, poll.html, poll.php, result.html, result.php
-nach C:\xampp\htdocs\Testat02 kopiert werden.
-Zuseatzlich werden beide Datenbanken benoetigt. 
+Es muessen alle Dateien nach C:\xampp\htdocs\Testat02 kopiert werden.
+Zuseatzlich ist ein DB Inport erforderlich. (Initial muss eine lerre DB "db_users" vorhanden sein)
 DB-Import:
 Datei "db_users.sql" nach C:\xampp\mysql\bin kopieren
 CMD öffnen:

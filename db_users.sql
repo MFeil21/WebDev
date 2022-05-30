@@ -28,8 +28,9 @@ CREATE TABLE `db_users` (
   `nachname` char(25) DEFAULT NULL,
   `geburtsdatum` date DEFAULT NULL,
   `studiengang` varchar(25) DEFAULT NULL,
+  `partei` mediumint(9) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +39,7 @@ CREATE TABLE `db_users` (
 
 LOCK TABLES `db_users` WRITE;
 /*!40000 ALTER TABLE `db_users` DISABLE KEYS */;
-INSERT INTO `db_users` VALUES (19,'Klausi','Tester','2022-05-27',NULL),(20,'Klausi','Tester','2022-05-27',NULL),(21,'Klausi','Tester','2022-05-27',NULL),(22,'Klausi','Tester','2022-05-27',NULL);
+INSERT INTO `db_users` VALUES (19,'Klausi','Tester','2022-05-27',NULL,NULL),(20,'Klausi','Tester','2022-05-27',NULL,NULL),(21,'Klausi','Tester','2022-05-27',NULL,NULL),(22,'Klausi','Tester','2022-05-27',NULL,NULL),(26,'neuester','waehler','1999-01-01','Mobile Computing',5),(27,'glaeserner','buerger','1930-01-01','Mobile Computing',3);
 /*!40000 ALTER TABLE `db_users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-27 15:36:51
+-- Dump completed on 2022-05-30 18:59:40

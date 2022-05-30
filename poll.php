@@ -3,15 +3,10 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname1 = "db_kandidaten";
-$dbname2 = "db_users";
-$verbindung1 = mysqli_connect($servername, $username, $password,$dbname1);
-if ($verbindung1 -> connect_error) {
-    die ("Verbindung Kandidaten-DB fehlgeschlagen: " . $verbindung1 -> connect_error);
-}
-$verbindung2 = mysqli_connect($servername, $username, $password,$dbname2);
-if ($verbindung2 -> connect_error) {
-    die ("Verbindung User-DB fehlgeschlagen: " . $verbindung2 -> connect_error);
+$dbname = "db_users";
+$verbindung = mysqli_connect($servername, $username, $password,$dbname);
+if ($verbindung -> connect_error) {
+    die ("Verbindung User-DB fehlgeschlagen: " . $verbindung -> connect_error);
 }
 
 $vorname = $_POST['vorname'];
@@ -20,23 +15,13 @@ $geburtsdatum = $_POST['geburtsdatum'];
 $studiengang = $_POST['studiengang'];
 $id = $_POST['id'];
 
-$sqldbcommand2 = "INSERT INTO db_users (`Id`, `vorname`, `nachname`, `geburtsdatum`, `studiengang`) 
-VALUES ('0', '$vorname', '$nachname', '$geburtsdatum', '$studiengang')";
-if ($verbindung2->query($sqldbcommand2) === TRUE) {
+$sqldbcommand = "INSERT INTO db_users (`Id`, `vorname`, `nachname`, `geburtsdatum`, `studiengang`, `partei`) 
+VALUES ('0', '$vorname', '$nachname', '$geburtsdatum', '$studiengang', '$id')";
+if ($verbindung->query($sqldbcommand) === TRUE) {
     echo "Neuer Eintrag erfolgreich erstellt";
   } else {
-    echo "Fehler: " . $sqldbcommand2 . "<br>" . $verbindung2->error;
+    echo "Fehler: " . $sqldbcommand . "<br>" . $verbindung->error;
   }
-
-$sqldbcommand1 = "UPDATE db_kandidaten SET stimmen = stimmen + 1 WHERE id = '$id'";
-
-if ($verbindung1->query($sqldbcommand1) === TRUE) {
-    echo "Stimmanzahl wurde angepasst";
-    echo "Vote für Kandidat" . $id;
-  } else {
-    echo "Fehler: " . $sqldbcommand1 . "<br>" . $verbindung1->error;
-  }
-  
 
 header( 'Location: result.php' );
 ?>
