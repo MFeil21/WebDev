@@ -74,8 +74,9 @@
 
 	//Poll Bestätigung nur möglich wenn alle Felder ausgefüllt wurden. 
 	function stimmeAbgeben() {
-		if(document.getElementById("Vorname").value.length !== 0 && document.getElementById("Nachname").value.length !== 0 && document.getElementById("Geburtsdatum").value.length !== 0 && document.getElementById("Studiengang").value.length !== 0 && (b1.checked || b2.checked || b3.checked || b4.checked || b5.checked || b6.checked)){
-			window.location.href = 'result.html'
+			/*urspruenglicher Code: (Es sind kein Buttons vorhanden, function liefert permannt Fehler)
+			if(document.getElementById("Vorname").value.length !== 0 && document.getElementById("Nachname").value.length !== 0 && document.getElementById("Geburtsdatum").value.length !== 0 && document.getElementById("Studiengang").value.length !== 0 && (b1.checked || b2.checked || b3.checked || b4.checked || b5.checked || b6.checked)){
+				window.location.href = 'result.html'*/
 		} else alert("Bitte alle Pflichtfelder ausfüllen und ihrer Demokratischen Pflicht nachkommen indem Sie eine Partei wählen.")
 	}
 	//Diagramme Klasse Partei
