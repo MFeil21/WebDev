@@ -112,8 +112,8 @@
         
         function sendeDaten()
         {   
-          if(document.getElementById("vorname").value.length !== 0 && document.getElementById("nachname").value.length !== 0 && document.getElementById("geburtsdatum").value.length !== 0)
-          {
+          if(document.getElementById("vorname").value.length !== 0 && document.getElementById("nachname").value.length !== 0 && document.getElementById("geburtsdatum").value.length !== 0 && studiengang.value.length !==0 && (id.value.length !==0))
+          {  
             document.getElementById("idTemp2").value = document.getElementById("studiengang").value
             document.benutzerdaten.submit();
           }
@@ -124,5 +124,4 @@
         }
   </script>
 
-  <script src = "script.js"></script>
 </html>

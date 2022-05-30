@@ -39,6 +39,4 @@ if ($verbindung1->query($sqldbcommand1) === TRUE) {
   
 
 header( 'Location: result.php' );
-
-
 ?>

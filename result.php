@@ -13,20 +13,14 @@ $columns = ['id', 'kurzname', 'stimmen'];
 $suche="SELECT id, kurzname, stimmen FROM db_kandidaten";
 $abfrageergebnis= mysqli_query($verbindung, $suche);
 
-echo "<table border='1'>
-<tr>
-<th>Kurzname</th>
-<th>Stimmen</th>
-</tr>";
-
+$stimmenUebersicht = array();
 while($row = mysqli_fetch_array($abfrageergebnis))
 {
-echo "<tr>";
-echo "<td>" . $row['kurzname'] . "</td>";
-echo "<td>" . $row['stimmen'] . "</td>";
-echo "</tr>";
+  $stimmenUebersicht[] = array ( 'id' => $row['id'], 'stimmen' => $row['stimmen'] );
 }
-echo "</table>";
+// enthaelt Stimmanzahl als Array - Inhalt: [{"id":"1","stimmen":"5"},{"id":"2","stimmen":"3"},{"id":"3","stimmen":"15"}, usw.
+$json = json_encode($stimmenUebersicht);
 
 mysqli_close($verbindung);
+header( 'Location: result.html' );
 ?>
