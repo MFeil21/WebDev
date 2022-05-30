@@ -6,6 +6,9 @@
 		summeErgebnis = Anzahl aller gültiger Stimmen nach Anwendung der 5% Hürde
 	*/
 	
+	var users = <?php echo json_encode($users); ?>;
+	console.log(users);
+
 	//Abfrage der Stimmen
 	var stimmen = [100, 200, 400, 50, 100, 200]; //SQL Abfrage hier einfügen
 	var ergebnis = [...stimmen];
@@ -71,14 +74,15 @@
 			break
 		}
 	}
-
+	/*
 	//Poll Bestätigung nur möglich wenn alle Felder ausgefüllt wurden. 
 	function stimmeAbgeben() {
-			/*urspruenglicher Code: (Es sind kein Buttons vorhanden, function liefert permannt Fehler)
+			urspruenglicher Code: (Es sind kein Buttons vorhanden, function liefert permannt Fehler)
 			if(document.getElementById("Vorname").value.length !== 0 && document.getElementById("Nachname").value.length !== 0 && document.getElementById("Geburtsdatum").value.length !== 0 && document.getElementById("Studiengang").value.length !== 0 && (b1.checked || b2.checked || b3.checked || b4.checked || b5.checked || b6.checked)){
-				window.location.href = 'result.html'*/
+				window.location.href = 'result.html'
 		} else alert("Bitte alle Pflichtfelder ausfüllen und ihrer Demokratischen Pflicht nachkommen indem Sie eine Partei wählen.")
 	}
+	*/
 	//Diagramme Klasse Partei
 	const partei = [
 		{name: "DPP", wähler: stimmen[0], mandate: ergebnis[0], farbe : "#3366ff"},
