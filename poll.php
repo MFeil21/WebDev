@@ -16,13 +16,12 @@ if ($verbindung2 -> connect_error) {
 
 $vorname = $_POST['vorname'];
 $nachname = $_POST['nachname'];
-//$geburtsdatum = $_POST['geburtsdatum'];  FORMAT:'JAHR-MONAT-TAG'
-$geburtsdatum = '1900-12-24';
-//Studiengang optgroup
+$geburtsdatum = $_POST['geburtsdatum'];
+$studiengang = $_POST['studiengang'];
 $id = $_POST['id'];
 
-$sqldbcommand2 = "INSERT INTO db_users (`Id`, `vorname`, `nachname`, `geburtsdatum`) 
-VALUES ('0', '$vorname', '$nachname', '$geburtsdatum')";
+$sqldbcommand2 = "INSERT INTO db_users (`Id`, `vorname`, `nachname`, `geburtsdatum`, `studiengang`) 
+VALUES ('0', '$vorname', '$nachname', '$geburtsdatum', '$studiengang')";
 if ($verbindung2->query($sqldbcommand2) === TRUE) {
     echo "Neuer Eintrag erfolgreich erstellt";
   } else {

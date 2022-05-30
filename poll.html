@@ -25,24 +25,21 @@
           <fieldset>
             <form name="benutzerdaten" method="post" action="poll.php">
               <label for="vorname" id="label">Vorname*</label>
-              <input type="text" id ="vorname2" name="vorname"/>
+              <input type="text" id ="vorname" name="vorname"/>
               </p>
               <label for="nachname" id="label">Nachname*</label>
               <input type="text" id ="nachname" name="nachname"/>
               </p>
               <label for="geburtsdatum" id="label">Geburtsdatum*</label>
-              <input type="date" id ="geburtsdatum" name="Geburtsdatum"/>
+              <input type="date" id ="geburtsdatum" name="geburtsdatum"/>
               </p>
-              <!--TEST BUTTON -->
-              <hr>
-              <input type="submit" name="Absenden" id="Absenden" value="Absenden">
-              <hr>
               <!-- Hidden Input Fields fuer Merge der beiden Forms-->
               <input type="hidden" id ="idTemp" name="id"/>
+              <input type="hidden" id ="idTemp2" name="studiengang"/>
 
               
               <label for="studiengang" id="label">Studiengang*</label>
-              <select name="Studiengang" id="field">
+              <select name="studiengang" id="studiengang">
                 <optgroup label="Fakultät Informatik">
                   <option disabled selected value>- bitte auswählen -</option>
                   <option value="Computer Science">Computer Science</option>
@@ -72,9 +69,8 @@
               <br><br>
               <hr color="orange">
               <br>
-              <a onclick="stimmeAbgeben()" id="button">Stimme abgeben</a>
+              <a onclick="sendeDaten()" id="button">Stimme abgeben</a>
           </footer>
-
         </div>
 
     <!-- rechter Bereich -->
@@ -112,8 +108,20 @@
           document.getElementById("idTemp").value = document.getElementById("id").value;
 
             }
-        })
+        })  
         
+        function sendeDaten()
+        {   
+          if(document.getElementById("vorname").value.length !== 0 && document.getElementById("nachname").value.length !== 0 && document.getElementById("geburtsdatum").value.length !== 0)
+          {
+            document.getElementById("idTemp2").value = document.getElementById("studiengang").value
+            document.benutzerdaten.submit();
+          }
+          else 
+          {
+            alert("Bitte alle Pflichtfelder ausfüllen und ihrer Demokratischen Pflicht nachkommen indem Sie eine Partei wählen.");
+          }
+        }
   </script>
 
   <script src = "script.js"></script>
