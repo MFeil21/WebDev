@@ -1,7 +1,7 @@
 
 ///
 Es muessen alle Dateien nach C:\xampp\htdocs\Testat02 kopiert werden.
-Zuseatzlich ist ein DB Inport erforderlich. (Initial muss eine lerre DB "db_users" vorhanden sein)
+Zuseatzlich ist ein DB Import erforderlich. (Initial muss eine leere DB "db_users" vorhanden sein)
 DB-Import:
 Datei "db_users.sql" nach C:\xampp\mysql\bin kopieren
 CMD öffnen:
