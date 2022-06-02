@@ -1,4 +1,4 @@
- <?php include ("result.php") ?>
+ <?php include ("query.php") ?>
  
  <!DOCTYPE html>
 <html lang="en" dir="ltr">

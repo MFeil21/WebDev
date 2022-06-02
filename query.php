@@ -33,7 +33,7 @@
       */
 
       $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei = 3";
-      $json1 = mysqli_query($verbindung, abfrage);
+      $json1 = mysqli_query($verbindung, $abfrage);
       
       mysqli_close($verbindung);
       
