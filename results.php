@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+ <?php include ("result.php") ?>
+ 
+ <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -8,9 +10,7 @@
     <meta name="json" content="<?= htmlspecialcharacters($json) ?>">
   </head>
   <header>
-      <?php
-      include ("result.php")
-      ?>
+     
   </header>
   <body>
     <div class="page">
