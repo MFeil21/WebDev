@@ -1,5 +1,3 @@
-<?php include ("query.php") ?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -10,7 +8,9 @@
     <meta name="json" content="<?= htmlspecialcharacters($json) ?>">
   </head>
   <header>
-      
+      <?php
+      include ("result.php")
+      ?>
   </header>
   <body>
     <div class="page">
