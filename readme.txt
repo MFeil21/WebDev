@@ -1,21 +1,7 @@
-Hello World
-Hello Test
-Matthias Check
-Sabrina Check
-Manuel Check
-final Check
+
 ///
-//
-/
-//
-///
-Es muessen die Dateien
-main.html, main.php
-poll.html, poll.php
-result.html, result.php
-nach C:\xampp\htdocs\Testat02 kopiert werden.
-Aktuell ist die Datei result.html nicht genutzt
-Zuseatzlich werden beide Datenbanken benoetigt. 
+Es muessen alle Dateien nach C:\xampp\htdocs\Testat02 kopiert werden.
+Zuseatzlich ist ein DB Import erforderlich. (Initial muss eine leere DB "db_users" vorhanden sein)
 DB-Import:
 Datei "db_users.sql" nach C:\xampp\mysql\bin kopieren
 CMD öffnen:

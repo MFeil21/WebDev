@@ -23,18 +23,23 @@
 
           <main title="InputElements">
           <fieldset>
-            <form name="benutzerdaten" method="post" action="main.php">
+            <form name="benutzerdaten" method="post" action="poll.php">
               <label for="vorname" id="label">Vorname*</label>
-              <input type="text" id ="field" name="vorname"/>
+              <input type="text" id ="vorname" name="vorname"/>
               </p>
               <label for="nachname" id="label">Nachname*</label>
-              <input type="text" id ="field" name="nachname"/>
+              <input type="text" id ="nachname" name="nachname"/>
               </p>
               <label for="geburtsdatum" id="label">Geburtsdatum*</label>
-              <input type="date" id ="field" name="Geburtsdatum"/>
+              <input type="date" id ="geburtsdatum" name="geburtsdatum"/>
               </p>
+              <!-- Hidden Input Fields fuer Merge der beiden Forms-->
+              <input type="hidden" id ="idTemp" name="id"/>
+              <input type="hidden" id ="idTemp2" name="studiengang"/>
+
+              
               <label for="studiengang" id="label">Studiengang*</label>
-              <select name="Studiengang" id="field">
+              <select name="studiengang" id="studiengang">
                 <optgroup label="Fakultät Informatik">
                   <option disabled selected value>- bitte auswählen -</option>
                   <option value="Computer Science">Computer Science</option>
@@ -64,31 +69,59 @@
               <br><br>
               <hr color="orange">
               <br>
-              <a onclick="stimmeAbgeben()" id="button">Stimme abgeben</a>
+              <a onclick="sendeDaten()" id="button">Stimme abgeben</a>
           </footer>
-
         </div>
 
     <!-- rechter Bereich -->
 
         <div class="toggle-buttons">
-          <input type="radio" id="b1" name="eine Stimme"/>
-          <label for="b1"><b>DDP</b><br>Die Party-Partei</label>
-          <input type="radio" id="b2" name="eine Stimme"/>
-          <label for="b2"><b>MUT</b><br>Mensch-Umwelt-Tierschutz</label>
-          <input type="radio" id="b3" name="eine Stimme"/>
-          <label for="b3"><b>NERD</b><br>Netzwerk engagierter Richter und Dichter</label>
-          <input type="radio" id="b4" name="eine Stimme"/>
-          <label for="b4"><b>LUST</b><br>Liste unabhängiger Studierender</label>
-          <input type="radio" id="b5" name="eine Stimme"/>
-          <label for="b5"><b>FFF</b><br>Freibier for Future</label>
-          <input type="radio" id="b6" name="eine Stimme"/>
-          <label for="b6"><b>fNEP</b><br>für Nicht-/Erst- und Protestwähler</label>
+          <input type="radio" id="1" name="eine Stimme"/>
+          <label for="1"><b>DPP</b><br>Die Party-Partei</label>
+          <input type="radio" id="2" name="eine Stimme"/>
+          <label for="2"><b>MUT</b><br>Mensch-Umwelt-Tierschutz</label>
+          <input type="radio" id="3" name="eine Stimme"/>
+          <label for="3"><b>NERD</b><br>Netzwerk engagierter Richter und Dichter</label>
+          <input type="radio" id="4" name="eine Stimme"/>
+          <label for="4"><b>LUST</b><br>Liste unabhängiger Studierender</label>
+          <input type="radio" id="5" name="eine Stimme"/>
+          <label for="5"><b>FFF</b><br>Freibier for Future</label>
+          <input type="radio" id="6" name="eine Stimme"/>
+          <label for="6"><b>fNEP</b><br>für Nicht-/Erst- und Protestwähler</label>
         </div>
 
       </div>
     </div>
   </body>
 
-  <script src = "script.js"></script>
+  <!-- Hidden InputField&Submitbutton - Notwendig fuer Uebergabe der ID des Kandidaten an PHP & mySQL -->
+  <form name="stimmen" id="stimmen" method="post" action="poll.php">
+    <input type="hidden" name="id" id="id">
+    <input type="hidden" name="Absenden" id="Absenden" value="Absenden">
+  </form>
+  <script type="text/javascript">
+    let candidates = document.querySelectorAll("input")
+    candidates.forEach(item => {
+      if (item.type == "radio")
+        item.onclick = (event) => {
+          document.getElementById("id").value = item.id;
+          document.getElementById("idTemp").value = document.getElementById("id").value;
+
+            }
+        })  
+        
+        function sendeDaten()
+        {   
+          if(document.getElementById("vorname").value.length !== 0 && document.getElementById("nachname").value.length !== 0 && document.getElementById("geburtsdatum").value.length !== 0 && studiengang.value.length !==0 && (id.value.length !==0))
+          {  
+            document.getElementById("idTemp2").value = document.getElementById("studiengang").value
+            document.benutzerdaten.submit();
+          }
+          else 
+          {
+            alert("Bitte alle Pflichtfelder ausfüllen und ihrer Demokratischen Pflicht nachkommen indem Sie eine Partei wählen.");
+          }
+        }
+  </script>
+
 </html>

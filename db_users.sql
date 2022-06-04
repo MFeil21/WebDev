@@ -24,12 +24,13 @@ DROP TABLE IF EXISTS `db_users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `db_users` (
   `id` mediumint(9) NOT NULL AUTO_INCREMENT,
-  `pseudonym` char(25) NOT NULL,
   `vorname` char(25) DEFAULT NULL,
   `nachname` char(25) DEFAULT NULL,
-  `geburtsjahr` mediumint(4) DEFAULT NULL,
+  `geburtsdatum` date DEFAULT NULL,
+  `studiengang` varchar(25) DEFAULT NULL,
+  `partei` mediumint(9) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +39,7 @@ CREATE TABLE `db_users` (
 
 LOCK TABLES `db_users` WRITE;
 /*!40000 ALTER TABLE `db_users` DISABLE KEYS */;
-INSERT INTO `db_users` VALUES (1,'Neue Datenbank, neues Glü','','',0),(2,'Neue Datenbank, neues Glü','','',0),(3,'die ID muss zählen','','',0),(4,'die ID muss zählen','hans','wurst',0);
+INSERT INTO `db_users` VALUES (19,'Klausi','Tester','2022-05-27',NULL,NULL),(20,'Klausi','Tester','2022-05-27',NULL,NULL),(21,'Klausi','Tester','2022-05-27',NULL,NULL),(22,'Klausi','Tester','2022-05-27',NULL,NULL),(26,'neuester','waehler','1999-01-01','Mobile Computing',5),(27,'glaeserner','buerger','1930-01-01','Mobile Computing',3);
 /*!40000 ALTER TABLE `db_users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-12 17:01:45
+-- Dump completed on 2022-05-30 18:59:40
