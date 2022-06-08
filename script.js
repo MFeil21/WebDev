@@ -5,12 +5,21 @@
 		summeStimmen = Anzahl aller abgegebener Stimmen
 		summeErgebnis = Anzahl aller gültiger Stimmen nach Anwendung der 5% Hürde
 	*/
-	var json = document.querySelector('meta[name="json"]').content;
+	var stimme1 = document.querySelector('meta[name="partei1"]').content;
+	var stimme2 = document.querySelector('meta[name="partei2"]').content;
+	var stimme3 = document.querySelector('meta[name="partei3"]').content;
+	var stimme4 = document.querySelector('meta[name="partei4"]').content;
+	var stimme5 = document.querySelector('meta[name="partei5"]').content;
+	var stimme6 = document.querySelector('meta[name="partei6"]').content;
+
 	//Abfrage der Stimmen
-	//var json1 = <?php echo json_encode($json1); ?>;
-    //var json2 = <?php echo json_encode($json2); ?>;
-	console.log(json);
-	var stimmen = [100, 200, 400, 50, 100, 200]; //SQL Abfrage hier einfügen
+	console.log(stimme1);
+	console.log(stimme2);
+	console.log(stimme3);
+	console.log(stimme4);
+	console.log(stimme5);
+	console.log(stimme6);
+	var stimmen = [parseInt(stimme1), parseInt(stimme2), parseInt(stimme3), parseInt(stimme4), parseInt(stimme5), parseInt(stimme6)];
 	var ergebnis = [...stimmen];
 	//Setze alle Stimmen unter der 5% Hürde auf 0 und ermittle den Divisor
 	var hürde = 0.05

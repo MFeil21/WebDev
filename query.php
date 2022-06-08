@@ -32,8 +32,23 @@
       print_r($json2);
       */
 
+      //$abfrage = "SELECT COUNT(*) FROM db_users WHERE partei = 3";
+      //$json1 = json_encode(mysqli_fetch_assoc(mysqli_query($verbindung, $abfrage)));
+
+      $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei = 1";
+      $ergebnis1 = mysqli_fetch_array(mysqli_query($verbindung, $abfrage));
+      $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei = 2";
+      $ergebnis2 = mysqli_fetch_array(mysqli_query($verbindung, $abfrage));
       $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei = 3";
-      $json1 = mysqli_query($verbindung, $abfrage);
+      $ergebnis3 = mysqli_fetch_array(mysqli_query($verbindung, $abfrage));
+      $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei = 4";
+      $ergebnis4 = mysqli_fetch_array(mysqli_query($verbindung, $abfrage));
+      $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei = 5";
+      $ergebnis5 = mysqli_fetch_array(mysqli_query($verbindung, $abfrage));
+      $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei = 6";
+      $ergebnis6 = mysqli_fetch_array(mysqli_query($verbindung, $abfrage));
+      
+      
       
       mysqli_close($verbindung);
       
