@@ -8,26 +8,46 @@
   if ($verbindung -> connect_error) {
       die ("Verbindung fehlgeschlagen: " . $verbindung -> connect_error);
   }
+
+  //$param = $_GET[];
+  $abfrageart = $_GET['abfrageart'];
+
   //Alle
-  $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
+  if($abfrageart==NULL)
+  {
+    $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
+  }
 
   //Alter U 18 
-  $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
+  if($abfrageart="AlterU18")
+  {
+    $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
+  }
 
   //Alter 18-30
-  $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
-
+  if($abfrageart="Alter18-30")
+  {
+    $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
+  }
+/*
   //Alter Ü 30
   $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
 
   //Studiengang Computer Science
   $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND studiengang ='Computer Science' GROUP BY partei";
-
+*/
   //Studiengang Informatik
-  $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND studiengang='Informatik' GROUP BY partei";
+  if($abfrageart="Informatik")
+  {
+    $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND studiengang='Informatik' GROUP BY partei";
+  }
 
   //Studiengang Medieninformatik
-  $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND studiengang='Medieninformatik' GROUP BY partei";
+  if($abfrageart="Medieninformatik")
+  {
+    $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND studiengang='Medieninformatik' GROUP BY partei";
+  }
+  /*
 
   //Studiengang Mobile Computing
   $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND studiengang='Mobile Computing' GROUP BY partei";
@@ -49,7 +69,7 @@
 
   //Studiengang andere Fakultät
   $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND studiengang='andere Fakultät' GROUP BY partei";
-
+*/
   //Parse Ergebnis
   $ergebnis = mysqli_fetch_all(mysqli_query($verbindung, $abfrage));
   echo json_encode($ergebnis);
