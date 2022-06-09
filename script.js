@@ -1,12 +1,50 @@
+//Function queryReport
+function queryReport(text)
+{
+  firstGeneralQuery = false;
+  var url = "query.php";
+  var parameter = "abfrageart="+text;
+  console.log(parameter);
+  xhr.open("GET", url+"?"+parameter);
+  xhr.onreadystatechange = function()
+  {
+      if(xhr.readyState == 4 && xhr.status == 200) {
+          alert(xhr.responseText);
+      }
+  }
+  xhr.send();
+}
+
+//ButtonsTemp
+let btnTmp1 = document.getElementById("buttonTemp1")
+btnTmp1.addEventListener('click', event => {
+    let text = btnTmp1.innerHTML;
+    queryReport(text);
+  });
+let btnTmp2 = document.getElementById("buttonTemp2")
+btnTmp2.addEventListener('click', event => {
+    let text = btnTmp2.innerHTML;
+    queryReport(text);
+  });
+let btnTmp3 = document.getElementById("buttonTemp3")
+btnTmp3.addEventListener('click', event => {
+    let text = btnTmp3.innerHTML;
+    queryReport(text);
+  });
+
 // Zugriff auf die Datenbank
 var stimmen;
+var firstGeneralQuery = new Boolean("true");
 var xhr = new XMLHttpRequest ();
-xhr.open("POST", "query.php");
-xhr.onload = function () {
-  stimmen = this.response;
-  stimmen = JSON.parse(stimmen);
-  stimmen = stimmen.map(Number);
-  var ergebnis = [...stimmen ];
+
+if(firstGeneralQuery)
+{
+  xhr.open("POST", "query.php");
+  xhr.onload = function () {
+    stimmen = this.response;
+    stimmen = JSON.parse(stimmen);
+    stimmen = stimmen.map(Number);
+    var ergebnis = [...stimmen ];
 
   // Setze alle Stimmen unter der 5% Hürde auf 0 und ermittle den Divisor
   var hürde = 0.05;
@@ -162,3 +200,4 @@ xhr.onload = function () {
     }
 };
 xhr.send();
+}
