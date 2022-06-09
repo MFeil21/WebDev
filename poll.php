@@ -23,5 +23,5 @@ if ($verbindung->query($sqldbcommand) === TRUE) {
     echo "Fehler: " . $sqldbcommand . "<br>" . $verbindung->error;
   }
 
-header( 'Location: result.php' );
+header( 'Location: results.html' );
 ?>
