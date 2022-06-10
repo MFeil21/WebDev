@@ -15,20 +15,22 @@
         <!-- NavBar -->
         <nav class="NavBar" style="--items: 4;">
           <ul>
+            <!-- ToDo: Buttons aus Sektion "Charts" (Line28-32) entfernen und Funktionalitaet uebernehmen | Bisher Eventlistener in script.js definiert -->
             <li><a class="active" href="#Wahlergebnis">Wahlergebnis</a></li>
             <li><a href="#news">Sitzverteilung</a></li>
             <li><a href="#contact">Auswertung nach Alter</a></li>
             <li><a href="#about">Auswertung nach Studiengang</a></li>
-            <!-- über "class" werden die Buttons mit forEach abgeholt und Eventhandler zugewiesen -->
-            <button id="buttonTemp1" class="buttonTemp1">AlterU18</button>
-            <button id="buttonTemp2" class="buttonTemp2">Medieninformatik</button>
-            <button id="buttonTemp3" class="buttonTemp3">Informatik</button>
           </ul>
         </nav>
 
         <!-- Charts -->
         <div id="container">
-          
+          <button id="btn0" class="btn">Alle</button>
+          <button id="btn4" class="btn">Computer Science</button>
+          <button id="btn5" class="btn">Informatik</button>
+          <button id="btn6" class="btn">Medieninformatik</button>
+          <button id="btn7" class="btn">Mobile Computing</button>
+
           <canvas id="donut", width="200" height="200"></canvas>
           <br>
           <canvas id="balken", width="600" height="200"></canvas>

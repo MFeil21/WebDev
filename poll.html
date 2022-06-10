@@ -33,7 +33,7 @@
               <label for="geburtsdatum" id="label">Geburtsdatum*</label>
               <input type="date" id ="geburtsdatum" name="geburtsdatum"/>
               </p>
-              <!-- Hidden Input Fields fuer Merge der beiden Forms-->
+              <!-- Hidden Input Fields fuer Merge der beiden Forms "benuzerdaten" und "studiengang" zu einem POST-Request -->
               <input type="hidden" id ="idTemp" name="id"/>
               <input type="hidden" id ="idTemp2" name="studiengang"/>
 
@@ -69,6 +69,7 @@
               <br><br>
               <hr color="orange">
               <br>
+              <!-- Button "Stimme abgeben" fuer Submit der Form mittels Function "sendeDaten()" -->
               <a onclick="sendeDaten()" id="button">Stimme abgeben</a>
           </footer>
         </div>
@@ -105,16 +106,21 @@
       if (item.type == "radio")
         item.onclick = (event) => {
           document.getElementById("id").value = item.id;
+          /* Bei Klick auf Schaltflaeche der jeweiligen Partei (Kandidaten) wird die ID der Schaltflaeche (=ID der Partei) aus dem HiddenInputField geholt
+          und der Value in das InputField gemerged, welches per POST-Request submitted wird  */
           document.getElementById("idTemp").value = document.getElementById("id").value;
 
             }
         })  
         
         function sendeDaten()
-        {   
+        {  
+          // Pruefung vor Absenden, ob eine Partei gewaehlt wurde und Felder fuer Vorname, Nachname, Geburtstdatum und Studiengang ausgeawehtl wurden
           if(document.getElementById("vorname").value.length !== 0 && document.getElementById("nachname").value.length !== 0 && document.getElementById("geburtsdatum").value.length !== 0 && studiengang.value.length !==0 && (id.value.length !==0))
           {  
+            // Setzen des Wertes "Studiengang" durch lesen des Temp-Formulars aus der linken Haelfte
             document.getElementById("idTemp2").value = document.getElementById("studiengang").value
+            // Submit der Form
             document.benutzerdaten.submit();
           }
           else 
