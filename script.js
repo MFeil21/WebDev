@@ -1,187 +1,196 @@
+// Initialer Post mit dem Ergebnis für Alle Stimmen
+window.post(0);
 
-window.render("Alle");
+// ButtonsTmp Können auch in HTML mit OnClick etc implementiert werden.
+let btn0 = document.getElementById("btn0")
+btn0.addEventListener('click', event => { window.post(0); });
 
-//ButtonsTemp
-let btn = document.getElementById("btn")
-btn.addEventListener('click', event => {
-    let text = btn.innerHTML;
-    window.render(text);
-});
+let btn4 = document.getElementById("btn4")
+btn4.addEventListener('click', event => { window.post(4); });
 
-function render(parameter)
-  {
+let btn5 = document.getElementById("btn5")
+btn5.addEventListener('click', event => { window.post(5); });
 
-    // Zugriff auf die Datenbank
-    var stimmen;
-    var xhr = new XMLHttpRequest ();
+let btn6 = document.getElementById("btn6")
+btn6.addEventListener('click', event => { window.post(6); });
 
-    //HIER GET EINFÜGEN MIT PARAMETER
-    xhr.open("GET", "query.php?abfrageart="+parameter);
-    //xhr.send();
-    xhr.onload = function () {
+let btn7 = document.getElementById("btn7")
+btn7.addEventListener('click', event => { window.post(7); });
 
-      //BAUSTELLE HIER. 
+function post (k)
+{
 
-    xhr.open("POST", "query.php");
-    xhr.onload = function () {
-      stimmen = this.response;
-      stimmen = JSON.parse(stimmen);
-      stimmen = stimmen.map(Number);
-      var ergebnis = [...stimmen ];
+  // Zugriff auf die Datenbank
+  var xhr = new XMLHttpRequest ();
+  xhr.open("POST", "query.php");
+  xhr.onload = function () {
+    var json = this.response;
+    json = JSON.parse(json);
+    for (var i = 0; i < 14; i++)
+      {
+        json[i] = JSON.parse(json[i]);
+        json[i] = json[i].map(Number);
+      }
 
-      // Setze alle Stimmen unter der 5% Hürde auf 0 und ermittle den Divisor
-      var hürde = 0.05;
-      var summeStimmen = 0;
-      for (var i of ergebnis)
-        {
-          summeStimmen += i;
-        }
-      var summeErgebnis = 0;
-      for (let [i, j] of ergebnis.entries())
-        {
-          if (j < summeStimmen * hürde)
-            {
-              ergebnis[i] = 0;
-            }
-          else
-            {
-              summeErgebnis += j;
-            }
-        }
+    var stimmen = [...json[k] ];
+    var ergebnis = [...stimmen ];
 
-      // Ermittlung der vollen Sitze
-      var sitze = 20;
-      var übrig = sitze;
-      var rest = [];
-      ergebnis.forEach((element, index) => {
-        rest.push(((element / summeErgebnis) * sitze) % 1);
-        ergebnis[index] = Math.floor((element / summeErgebnis) * sitze);
-        übrig -= ergebnis[index];
-      });
+    // Setze alle Stimmen unter der 5% Hürde auf 0 und ermittle den Divisor
+    var hürde = 0.05;
+    var summeStimmen = 0;
+    for (var i of ergebnis)
+      {
+        summeStimmen += i;
+      }
+    var summeErgebnis = 0;
+    for (let [i, j] of ergebnis.entries())
+      {
+        if (j < summeStimmen * hürde)
+          {
+            ergebnis[i] = 0;
+          }
+        else
+          {
+            summeErgebnis += j;
+          }
+      }
 
-      // Verteilung der Reste
-      while (übrig != 0)
-        {
-          var gleichstand = false;
-          var max = 0;
-          var lose = 1;
-          for (i of rest)
-            {
-              if (i == max)
-                {
-                  gleichstand = true;
-                  lose++;
-                }
-              else if (i > max)
-                {
-                  gleichstand = false;
-                  max = i;
-                  lose = 1;
-                }
-            }
-          if (gleichstand == false)
-            {
-              ergebnis[rest.indexOf(max)] = ergebnis[rest.indexOf(max)] + 1;
-              rest[rest.indexOf(max)] = 0;
-              übrig--;
-            }
-          else if (übrig >= lose)
-            {
-              while (lose > 0)
-                {
-                  ergebnis[rest.indexOf(max)] = ergebnis[rest.indexOf(max)] + 1;
-                  rest[rest.indexOf(max)] = 0;
-                  übrig--;
-                  lose--;
-                }
-            }
+    // Ermittlung der vollen Sitze
+    var sitze = 20;
+    var übrig = sitze;
+    var rest = [];
+    ergebnis.forEach((element, index) => {
+      rest.push(((element / summeErgebnis) * sitze) % 1);
+      ergebnis[index] = Math.floor((element / summeErgebnis) * sitze);
+      übrig -= ergebnis[index];
+    });
 
-          // Theoretisch würden hier verlost werden. Bei einer aktiven
-          // Wahl ist das natürlich vor Wahlende unmöglich da sich das
-          // Ergebnis bei jedem Gleichstand neu erlosen würde.
-          // Die fehlenden Sitze werden einfach vorerst ignoriert, in
-          // der Konsole wird der Vollständigkeithalber aber angezeigt
-          // dass hier ein Gleichstand herrscht.
-          else
-            {
-              console.log("Gleichstand = " + gleichstand);
-              break;
-            }
-        }
+    // Verteilung der Reste
+    while (übrig != 0)
+      {
+        var gleichstand = false;
+        var max = 0;
+        var lose = 1;
+        for (i of rest)
+          {
+            if (i == max)
+              {
+                gleichstand = true;
+                lose++;
+              }
+            else if (i > max)
+              {
+                gleichstand = false;
+                max = i;
+                lose = 1;
+              }
+          }
+        if (gleichstand == false)
+          {
+            ergebnis[rest.indexOf(max)] = ergebnis[rest.indexOf(max)] + 1;
+            rest[rest.indexOf(max)] = 0;
+            übrig--;
+          }
+        else if (übrig >= lose)
+          {
+            while (lose > 0)
+              {
+                ergebnis[rest.indexOf(max)] = ergebnis[rest.indexOf(max)] + 1;
+                rest[rest.indexOf(max)] = 0;
+                übrig--;
+                lose--;
+              }
+          }
 
-      // Diagramme Klasse Partei
-      const partei = [
-        {
-          name : "DPP",
-          wähler : stimmen[0],
-          mandate : ergebnis[0],
-          farbe : "#3366ff"
-        },
-        {
-          name : "MUT",
-          wähler : stimmen[1],
-          mandate : ergebnis[1],
-          farbe : "#00cc66"
-        },
-        {
-          name : "NERD",
-          wähler : stimmen[2],
-          mandate : ergebnis[2],
-          farbe : "#9933ff"
-        },
-        {
-          name : "LUST",
-          wähler : stimmen[3],
-          mandate : ergebnis[3],
-          farbe : "#ff0000"
-        },
-        {
-          name : "FFF",
-          wähler : stimmen[4],
-          mandate : ergebnis[4],
-          farbe : "#ffff00"
-        },
-        {
-          name : "fNEP",
-          wähler : stimmen[5],
-          mandate : ergebnis[5],
-          farbe : "#33cccc"
-        }
-      ];
-      if (übrig !== 0)
-        {
-          partei.pop({ name : "Losentscheid", mandate : übrig, farbe : "#000000" });
-        }
+        // Theoretisch würden hier verlost werden. Bei einer aktiven
+        // Wahl ist das natürlich vor Wahlende unmöglich da sich das
+        // Ergebnis bei jedem Gleichstand neu erlosen würde.
+        // Die fehlenden Sitze werden einfach vorerst ignoriert, in
+        // der Konsole wird der Vollständigkeithalber aber angezeigt
+        // dass hier ein Gleichstand herrscht.
+        else
+          {
+            console.log("Gleichstand = " + gleichstand);
+            break;
+          }
+      }
 
-      // Donut Diagramm
-      let ctx = document.getElementById("donut").getContext("2d");
-      let winkel = Math.PI;
-      for (let party of partei)
-        {
-          let anteil = (party.mandate / (sitze * 2)) * 2 * Math.PI;
-          ctx.beginPath();
-          ctx.arc(100, 100, 100, winkel, winkel + anteil);
-          winkel += anteil;
-          ctx.lineTo(100, 100);
-          ctx.fillStyle = party.farbe;
-          ctx.fill();
-        }
-      ctx.beginPath();
-      ctx.arc(100, 100, 40, Math.PI, 0);
-      ctx.lineTo(100, 100);
-      ctx.fillStyle = "#ffffff";
-      ctx.fill();
+    // Diagramme Klasse Partei
+    var partei = [
+      {
+        name : "DPP",
+        wähler : stimmen[0],
+        mandate : ergebnis[0],
+        farbe : "#3366ff"
+      },
+      {
+        name : "MUT",
+        wähler : stimmen[1],
+        mandate : ergebnis[1],
+        farbe : "#00cc66"
+      },
+      {
+        name : "NERD",
+        wähler : stimmen[2],
+        mandate : ergebnis[2],
+        farbe : "#9933ff"
+      },
+      {
+        name : "LUST",
+        wähler : stimmen[3],
+        mandate : ergebnis[3],
+        farbe : "#ff0000"
+      },
+      {
+        name : "FFF",
+        wähler : stimmen[4],
+        mandate : ergebnis[4],
+        farbe : "#ffff00"
+      },
+      {
+        name : "fNEP",
+        wähler : stimmen[5],
+        mandate : ergebnis[5],
+        farbe : "#33cccc"
+      }
+    ];
+    if (übrig !== 0)
+      {
+        partei.pop(
+            { name : "Losentscheid", mandate : übrig, farbe : "#fff000" });
+      }
 
-      // Balken Diagramm
-      let ctx2 = document.getElementById("balken").getContext("2d");
-      let balken = 0;
-      for (let party of partei)
-        {
-          ctx2.fillStyle = party.farbe;
-          ctx2.fillRect(balken += 40, 100, 20,
-                        (-party.wähler / summeStimmen) * 200);
-        }
-    };
+    // Donut Diagramm
+    let ctx = document.getElementById("donut").getContext("2d");
+    let winkel = Math.PI;
+    ctx.clearRect(0, 0, 1000, 1000);
+    for (let party of partei)
+      {
+        let anteil = (party.mandate / (sitze * 2)) * 2 * Math.PI;
+        ctx.beginPath();
+        ctx.arc(100, 100, 100, winkel, winkel + anteil);
+        winkel += anteil;
+        ctx.lineTo(100, 100);
+        ctx.fillStyle = party.farbe;
+        ctx.fill();
+      }
+    ctx.beginPath();
+    ctx.arc(100, 100, 40, Math.PI, 0);
+    ctx.lineTo(100, 100);
+    ctx.fillStyle = "#ffffff";
+    ctx.fill();
+
+    // Balken Diagramm
+    let ctx2 = document.getElementById("balken").getContext("2d");
+    let balken = 0;
+    ctx2.clearRect(0, 0, 1000, 1000);
+    for (let party of partei)
+      {
+        ctx2.fillStyle = party.farbe;
+        ctx2.fillRect(balken += 40, 100, 20,
+                      (-party.wähler / summeStimmen) * 200);
+      }
+
   };
-    xhr.send();
+  xhr.send();
 }
