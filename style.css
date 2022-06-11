@@ -195,13 +195,122 @@ input:focus + label {
   background-color: #ef6c00;
 }
 
-#container {
-  margin: 0;
-  padding 0;
-  width: 200px;
-  height: 200px;
-}
-
 a:hover {
  cursor:pointer;
+}
+
+.leftBoxResult {
+  width: 1100px;
+  height: 600px;
+  background-color: white;
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 0px 50px 100px rgba(0, 0, 0, .4);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  background-color: lightgrey;
+}
+
+.rightBoxResult {
+  height: 100%;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /*border-style: dashed;*/
+  background-color: white;
+}
+
+#charts {
+  margin: 0;
+  padding: 0;
+  width: 600px;
+  height: 450px;
+  /*border-style: dotted;*/
+  /*display: inline-flex;*/
+  display: block;
+  margin: 0 auto;
+}
+
+#chartsText {
+  color: grey;
+  font-family: Verdana;
+  font-size: 14px;
+}
+
+.legend {
+  list-style: none;
+}
+
+.legend li {
+  float: left; margin-right: 20px;
+  /*border-style: dashed;*/
+}
+
+.legend span {
+  border: 1px solid #ccc;
+  float: left;
+  width: 20px;
+  height: 12px;
+  margin: 5px;
+}
+
+.legend .partei1 {
+  background-color: yellow;
+}
+.legend .partei2 {
+  background-color: orange;
+}
+.legend .partei3 {
+  background-color: red;
+}
+.legend .partei4 {
+  background-color: darkred;
+}
+.legend .partei5 {
+  background-color: grey;
+}
+.legend .partei6 {
+  background-color: black;
+}
+
+#filter {
+  margin-top: -20px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 5px 5px;
+  display: grid;
+  grid-gap: 0px;
+  border-radius: 5px;
+  color: #ef6c00;
+  /*border-style: dotted;*/
+}
+
+#filterText {
+  margin-left: 10px;
+  font-weight: 200;
+  font-size: 14px;
+  color: #ef6c00;
+  font-family: Verdana;
+  /*border-style: dotted;*/
+}
+
+#btn0, #btn1, #btn2, #btn3, #btn4  {
+  border-color: #fe864c;
+  background-color: #fe864a;
+  border-radius: 10px;
+  padding: 5px;
+  border-style: double;
+  margin: 10px;
+  width: 350px;
+}
+
+#btn0, #btn1, #btn2, #btn3, #btn4 {
+  transition-duration: 1s;
+}
+
+#btn0:hover, #btn1:hover, #btn2:hover, #btn3:hover, #btn4:hover {
+  background-color: white;
+  color: #ef6c00;
 }

@@ -1,28 +1,35 @@
 <?php
+//Params DB Connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_users";
 
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "db_users";
-  $verbindung = mysqli_connect($servername, $username, $password,$dbname);
-  if ($verbindung -> connect_error) {
-      die ("Verbindung fehlgeschlagen: " . $verbindung -> connect_error);
-  }
+//Connection Test
+$verbindung = mysqli_connect($servername, $username, $password,$dbname);
+if ($verbindung -> connect_error) {
+    die ("Verbindung fehlgeschlagen: " . $verbindung -> connect_error);
+}
 
+//SQL-Abfragen
+//ToDo: ergebnis1-3 fuer Altersgruppen liefert Anzahl zurueck, aber nicht fuer alle 6 Parteien
   //Alle
   $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
   $ergebnis0 = mysqli_fetch_all(mysqli_query($verbindung, $abfrage));
 
   //Alter U 18 
   $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
+  // $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND TIMESTAMPDIFF(YEAR, geburtsdatum, CURDATE()) <18 GROUP BY partei;"
   $ergebnis1 = mysqli_fetch_all(mysqli_query($verbindung, $abfrage));
 
   //Alter 18-30
   $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
+  // $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND TIMESTAMPDIFF(YEAR, geburtsdatum, CURDATE()) BETWEEN 18 AND 30 GROUP BY partei;"
   $ergebnis2 = mysqli_fetch_all(mysqli_query($verbindung, $abfrage));
 
   //Alter Ü 30
   $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
+  // $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND TIMESTAMPDIFF(YEAR, geburtsdatum, CURDATE()) >30 GROUP BY partei;"
   $ergebnis3 = mysqli_fetch_all(mysqli_query($verbindung, $abfrage));
 
   //Studiengang Computer Science

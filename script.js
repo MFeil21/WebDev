@@ -1,9 +1,18 @@
 // Initialer Post mit dem Ergebnis für Alle Stimmen
 window.post(0);
 
-// ButtonsTmp Können auch in HTML mit OnClick etc implementiert werden.
+//Event Handler
 let btn0 = document.getElementById("btn0")
 btn0.addEventListener('click', event => { window.post(0); });
+
+let btn1 = document.getElementById("btn1")
+btn1.addEventListener('click', event => { window.post(1); });
+
+let btn2 = document.getElementById("btn2")
+btn2.addEventListener('click', event => { window.post(2); });
+
+let btn3 = document.getElementById("btn3")
+btn3.addEventListener('click', event => { window.post(3); });
 
 let btn4 = document.getElementById("btn4")
 btn4.addEventListener('click', event => { window.post(4); });
@@ -16,6 +25,24 @@ btn6.addEventListener('click', event => { window.post(6); });
 
 let btn7 = document.getElementById("btn7")
 btn7.addEventListener('click', event => { window.post(7); });
+
+let btn8 = document.getElementById("btn8")
+btn8.addEventListener('click', event => { window.post(8); });
+
+let btn9 = document.getElementById("btn9")
+btn9.addEventListener('click', event => { window.post(9); });
+
+let btn10 = document.getElementById("btn10")
+btn10.addEventListener('click', event => { window.post(10); });
+
+let btn11 = document.getElementById("btn11")
+btn11.addEventListener('click', event => { window.post(11); });
+
+let btn12 = document.getElementById("btn12")
+btn12.addEventListener('click', event => { window.post(12); });
+
+let btn13 = document.getElementById("btn13")
+btn13.addEventListener('click', event => { window.post(13); });
 
 function post (k)
 {
@@ -110,7 +137,8 @@ function post (k)
         // dass hier ein Gleichstand herrscht.
         else
           {
-            console.log("Gleichstand = " + gleichstand);
+            console.log("Gleichstand = " + gleichstand + " :: " + 
+                            übrig + " Sitz(e) noch zu verlosen."     );
             break;
           }
       }
@@ -121,74 +149,96 @@ function post (k)
         name : "DPP",
         wähler : stimmen[0],
         mandate : ergebnis[0],
-        farbe : "#3366ff"
+        farbe : "#FFFF00"
       },
       {
         name : "MUT",
         wähler : stimmen[1],
         mandate : ergebnis[1],
-        farbe : "#00cc66"
+        farbe : "#ffa500"
       },
       {
         name : "NERD",
         wähler : stimmen[2],
         mandate : ergebnis[2],
-        farbe : "#9933ff"
+        farbe : "#ff0000"
       },
       {
         name : "LUST",
         wähler : stimmen[3],
         mandate : ergebnis[3],
-        farbe : "#ff0000"
+        farbe : "#8b0000"
       },
       {
         name : "FFF",
         wähler : stimmen[4],
         mandate : ergebnis[4],
-        farbe : "#ffff00"
+        farbe : "#808080"
       },
       {
         name : "fNEP",
         wähler : stimmen[5],
         mandate : ergebnis[5],
-        farbe : "#33cccc"
+        farbe : "#000000"
       }
     ];
     if (übrig !== 0)
       {
-        partei.pop(
-            { name : "Losentscheid", mandate : übrig, farbe : "#fff000" });
+        partei.push(
+          { 
+            name : "Losentscheid", 
+            mandate : übrig, 
+            farbe : "#4d4df0" 
+          });
       }
 
     // Donut Diagramm
     let ctx = document.getElementById("donut").getContext("2d");
     let winkel = Math.PI;
+    let reihe = 0;
     ctx.clearRect(0, 0, 1000, 1000);
     for (let party of partei)
       {
         let anteil = (party.mandate / (sitze * 2)) * 2 * Math.PI;
         ctx.beginPath();
-        ctx.arc(100, 100, 100, winkel, winkel + anteil);
+        ctx.arc(150, 150, 150, winkel, winkel + anteil);
         winkel += anteil;
-        ctx.lineTo(100, 100);
+        ctx.lineTo(150, 150);
         ctx.fillStyle = party.farbe;
         ctx.fill();
+        if(party.mandate > 0)
+          {
+            ctx.fillRect(400, reihe +11 , 10, 10);
+            ctx.fillStyle = "#000000";
+            ctx.font = "12px Arial";
+            if(party.name === "Losentscheid") 
+              {
+                ctx.fillText(party.mandate === 1 ? party.mandate + " Sitz zu verlosen" : party.mandate + " Sitze zu verlosen" ,420, reihe += 20);
+              } else ctx.fillText(party.mandate === 1 ? party.mandate + " Sitz" : party.mandate + " Sitze" ,420, reihe += 20);
+          }
       }
     ctx.beginPath();
-    ctx.arc(100, 100, 40, Math.PI, 0);
-    ctx.lineTo(100, 100);
+    ctx.arc(150, 150, 60, Math.PI, 0);
+    ctx.lineTo(150, 150);
     ctx.fillStyle = "#ffffff";
     ctx.fill();
 
     // Balken Diagramm
+    
     let ctx2 = document.getElementById("balken").getContext("2d");
     let balken = 0;
     ctx2.clearRect(0, 0, 1000, 1000);
     for (let party of partei)
       {
-        ctx2.fillStyle = party.farbe;
-        ctx2.fillRect(balken += 40, 100, 20,
-                      (-party.wähler / summeStimmen) * 200);
+        if (party.name !== "Losentscheid") 
+          {
+            ctx2.fillStyle = party.farbe;
+            ctx2.fillRect(balken += 80, 100, 40,
+                          (-party.wähler / summeStimmen) * 150);
+            ctx2.fillStyle = "#000000";
+            ctx2.font = "15px Arial";
+            ctx2.fillText( Math.round(party.wähler*1000/summeStimmen)/10 + " %", balken+10, 120)
+          }
       }
 
   };

@@ -10,34 +10,75 @@
   </header>
   <body>
     <div class="page">
-      <div class="leftBox">
+      <div class="leftBoxResult">
+        <div class="rightBoxResult">
 
-        <!-- NavBar -->
-        <nav class="NavBar" style="--items: 4;">
-          <ul>
-            <li><a class="active" href="#Wahlergebnis">Wahlergebnis</a></li>
-            <li><a href="#news">Sitzverteilung</a></li>
-            <li><a href="#contact">Auswertung nach Alter</a></li>
-            <li><a href="#about">Auswertung nach Studiengang</a></li>
-          </ul>
-        </nav>
+          <!-- NavBar -->
+          <nav class="NavBar" style="--items: 4;">
+            <ul>
+              <!-- ToDo: Buttons aus Sektion "Charts" (Line28-32) entfernen und Funktionalitaet uebernehmen | Bisher Eventlistener in script.js definiert -->
+              <li><a class="active" href="#Wahlergebnis">Wahlergebnis mit Sitzverteilung</a></li>
+              <!--<li><a href="#news">Sitzverteilung</a></li>-->
+              <li><a href="#contact">Auswertung nach Alter</a></li>
+              <li><a href="#about">Auswertung nach Studiengang</a></li>
+            </ul>
+          </nav>
 
-        <!-- Charts -->
-        <div id="container">
-          <button id="btn0" class="btn">Alle</button>
-          <button id="btn4" class="btn">Computer Science</button>
-          <button id="btn5" class="btn">Informatik</button>
-          <button id="btn6" class="btn">Medieninformatik</button>
-          <button id="btn7" class="btn">Mobile Computing</button>
-
-          <canvas id="donut", width="200" height="200"></canvas>
-          <br>
-          <canvas id="balken", width="600" height="200"></canvas>
+          <!-- Charts -->
+          <div id="charts">
+            <br>
+            <p id="chartsText">Sitzverteilung:</p><br>
+            <canvas id="donut" width="600"></canvas>
+            <hr color="orange" width="600px" height="2px">
+            <br>
+            <p id="chartsText">Wahlergebnis:</p>
+            <canvas id="balken" width="600"></canvas>
+          </div>
+          <hr color="orange" width="600px" height="2px">
+          <!-- Legend -->
+          <footer>
+              <ul class="legend">
+                  <li><span class="partei1"></span>DPP</li>
+                  <li><span class="partei2"></span>MUT</li>
+                  <li><span class="partei3"></span>NERD</li>
+                  <li><span class="partei4"></span>LUST</li>
+                  <li><span class="partei5"></span>FFF</li>
+                  <li><span class="partei6"></span>fNEP</li>
+              </ul>
+          </footer>
 
         </div>
+
+        <!-- Options -->
+        <div id="filter">
+            <p id="filterText">Filterung nach Studiengang:</p>
+              <select name="studiengang" id="studiengang">
+                <optgroup label="Fakultät Informatik">
+                  <option disabled selected value>- Studiengang auswählen -</option>
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Informatik">Informatik</option>
+                  <option value="Medieninformatik">Medieninformatik</option>
+                  <option value="Mobile Computing">Mobile Computing</option>
+                  <option value="Wirtschaftsinformatik">Wirtschaftsinformatik</option>
+                  <option value="Master Informatik">Master Informatik</option>
+                  <option value="Master Applied Research in Computer Science">Master Applied Research in Computer Science</option>
+                  <option value="Master Software Engineering for Industrial Applications">Master Software Engineering for Industrial Applications</option>
+                  <option value="Verwaltungsinformatik">Verwaltungsinformatik</option>
+                <optgroup label="Sonstiges">
+                  <option value="andere Fakultät">andere Fakultät</option>
+              </select>
+            <p id="filterText">Filterung nach Alter:</p>
+              <button id="btn0" class="btn">unter 18</button>
+              <button id="btn1" class="btn">zwischen 18 und 30</button>
+              <button id="btn2" class="btn">zwischen 30 und 50</button>
+              <button id="btn3" class="btn">zwischen 50 und 70</button>
+              <button id="btn4" class="btn">über 70</button>
+        </div>
+
       </div>
     </div>
   </body>
   <script src = "script.js">
   </script>
 </html>
+
