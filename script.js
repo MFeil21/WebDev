@@ -6,17 +6,17 @@ Uebergabeparameter (0-13) an window.post() steuert die zurueckgegebenen Daten   
 let btn0 = document.getElementById("btn0")
 btn0.addEventListener('click', event => { window.post(0); });
 
-let btn4 = document.getElementById("btn4")
+let btn1 = document.getElementById("btn1")
 btn4.addEventListener('click', event => { window.post(4); });
 
-let btn5 = document.getElementById("btn5")
+let btn2 = document.getElementById("btn2")
 btn5.addEventListener('click', event => { window.post(5); });
 
-let btn6 = document.getElementById("btn6")
+let btn3 = document.getElementById("btn3")
 btn6.addEventListener('click', event => { window.post(6); });
 
-let btn7 = document.getElementById("btn7")
-btn7.addEventListener('click', event => { window.post(7); });
+let btn4 = document.getElementById("btn4")
+btn4.addEventListener('click', event => { window.post(4); });
 
 function post (k)
 {
@@ -122,37 +122,37 @@ function post (k)
         name : "DPP",
         wähler : stimmen[0],
         mandate : ergebnis[0],
-        farbe : "#3366ff"
+        farbe : "#FFFF00"
       },
       {
         name : "MUT",
         wähler : stimmen[1],
         mandate : ergebnis[1],
-        farbe : "#00cc66"
+        farbe : "#ffa500"
       },
       {
         name : "NERD",
         wähler : stimmen[2],
         mandate : ergebnis[2],
-        farbe : "#9933ff"
+        farbe : "#ff0000"
       },
       {
         name : "LUST",
         wähler : stimmen[3],
         mandate : ergebnis[3],
-        farbe : "#ff0000"
+        farbe : "#8b0000"
       },
       {
         name : "FFF",
         wähler : stimmen[4],
         mandate : ergebnis[4],
-        farbe : "#ffff00"
+        farbe : "#808080"
       },
       {
         name : "fNEP",
         wähler : stimmen[5],
         mandate : ergebnis[5],
-        farbe : "#33cccc"
+        farbe : "#000000"
       }
     ];
     if (übrig !== 0)
