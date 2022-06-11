@@ -16,7 +16,7 @@ let btn3 = document.getElementById("btn3")
 btn6.addEventListener('click', event => { window.post(6); });
 
 let btn4 = document.getElementById("btn4")
-btn7.addEventListener('click', event => { window.post(7); });
+btn4.addEventListener('click', event => { window.post(4); });
 
 function post (k)
 {
