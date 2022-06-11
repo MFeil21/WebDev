@@ -1,164 +1,197 @@
-// Zugriff auf die Datenbank
-var stimmen;
-var xhr = new XMLHttpRequest ();
-xhr.open("POST", "query.php");
-xhr.onload = function () {
-  stimmen = this.response;
-  stimmen = JSON.parse(stimmen);
-  stimmen = stimmen.map(Number);
-  var ergebnis = [...stimmen ];
+// Initialer Post mit dem Ergebnis für Alle Stimmen
+window.post(0);
 
-  // Setze alle Stimmen unter der 5% Hürde auf 0 und ermittle den Divisor
-  var hürde = 0.05;
-  var summeStimmen = 0;
-  for (var i of ergebnis)
-    {
-      summeStimmen += i;
-    }
-  var summeErgebnis = 0;
-  for (let [i, j] of ergebnis.entries())
-    {
-      if (j < summeStimmen * hürde)
-        {
-          ergebnis[i] = 0;
-        }
-      else
-        {
-          summeErgebnis += j;
-        }
-    }
+/* ButtonsTmp Können auch in HTML mit OnClick etc implementiert werden.
+Uebergabeparameter (0-13) an window.post() steuert die zurueckgegebenen Daten   */
+let btn0 = document.getElementById("btn0")
+btn0.addEventListener('click', event => { window.post(0); });
 
-  // Ermittlung der vollen Sitze
-  var sitze = 20;
-  var übrig = sitze;
-  var rest = [];
-  ergebnis.forEach((element, index) => {
-    rest.push(((element / summeErgebnis) * sitze) % 1);
-    ergebnis[index] = Math.floor((element / summeErgebnis) * sitze);
-    übrig -= ergebnis[index];
-  });
+let btn1 = document.getElementById("btn1")
+btn4.addEventListener('click', event => { window.post(4); });
 
-  // Verteilung der Reste
-  while (übrig != 0)
-    {
-      var gleichstand = false;
-      var max = 0;
-      var lose = 1;
-      for (i of rest)
-        {
-          if (i == max)
-            {
-              gleichstand = true;
-              lose++;
-            }
-          else if (i > max)
-            {
-              gleichstand = false;
-              max = i;
-              lose = 1;
-            }
-        }
-      if (gleichstand == false)
-        {
-          ergebnis[rest.indexOf(max)] = ergebnis[rest.indexOf(max)] + 1;
-          rest[rest.indexOf(max)] = 0;
-          übrig--;
-        }
-      else if (übrig >= lose)
-        {
-          while (lose > 0)
-            {
-              ergebnis[rest.indexOf(max)] = ergebnis[rest.indexOf(max)] + 1;
-              rest[rest.indexOf(max)] = 0;
-              übrig--;
-              lose--;
-            }
-        }
+let btn2 = document.getElementById("btn2")
+btn5.addEventListener('click', event => { window.post(5); });
 
-      // Theoretisch würden hier verlost werden. Bei einer aktiven
-      // Wahl ist das natürlich vor Wahlende unmöglich da sich das
-      // Ergebnis bei jedem Gleichstand neu erlosen würde.
-      // Die fehlenden Sitze werden einfach vorerst ignoriert, in
-      // der Konsole wird der Vollständigkeithalber aber angezeigt
-      // dass hier ein Gleichstand herrscht.
-      else
-        {
-          console.log("Gleichstand = " + gleichstand);
-          break;
-        }
-    }
+let btn3 = document.getElementById("btn3")
+btn6.addEventListener('click', event => { window.post(6); });
 
-  // Diagramme Klasse Partei
-  const partei = [
-    {
-      name : "DPP",
-      wähler : stimmen[0],
-      mandate : ergebnis[0],
-      farbe : "#3366ff"
-    },
-    {
-      name : "MUT",
-      wähler : stimmen[1],
-      mandate : ergebnis[1],
-      farbe : "#00cc66"
-    },
-    {
-      name : "NERD",
-      wähler : stimmen[2],
-      mandate : ergebnis[2],
-      farbe : "#9933ff"
-    },
-    {
-      name : "LUST",
-      wähler : stimmen[3],
-      mandate : ergebnis[3],
-      farbe : "#ff0000"
-    },
-    {
-      name : "FFF",
-      wähler : stimmen[4],
-      mandate : ergebnis[4],
-      farbe : "#ffff00"
-    },
-    {
-      name : "fNEP",
-      wähler : stimmen[5],
-      mandate : ergebnis[5],
-      farbe : "#33cccc"
-    }
-  ];
-  if (übrig !== 0)
-    {
-      partei.pop({ name : "Losentscheid", mandate : übrig, farbe : "#000000" });
-    }
+let btn4 = document.getElementById("btn4")
+btn7.addEventListener('click', event => { window.post(7); });
 
-  // Donut Diagramm
-  let ctx = document.getElementById("donut").getContext("2d");
-  let winkel = Math.PI;
-  for (let party of partei)
-    {
-      let anteil = (party.mandate / (sitze * 2)) * 2 * Math.PI;
-      ctx.beginPath();
-      ctx.arc(100, 100, 100, winkel, winkel + anteil);
-      winkel += anteil;
-      ctx.lineTo(100, 100);
-      ctx.fillStyle = party.farbe;
-      ctx.fill();
-    }
-  ctx.beginPath();
-  ctx.arc(100, 100, 40, Math.PI, 0);
-  ctx.lineTo(100, 100);
-  ctx.fillStyle = "#ffffff";
-  ctx.fill();
+function post (k)
+{
 
-  // Balken Diagramm
-  let ctx2 = document.getElementById("balken").getContext("2d");
-  let balken = 0;
-  for (let party of partei)
-    {
-      ctx2.fillStyle = party.farbe;
-      ctx2.fillRect(balken += 40, 100, 20,
-                    (-party.wähler / summeStimmen) * 200);
-    }
-};
-xhr.send();
+  // Zugriff auf die Datenbank
+  var xhr = new XMLHttpRequest ();
+  xhr.open("POST", "query.php");
+  xhr.onload = function () {
+    var json = this.response;
+    json = JSON.parse(json);
+    for (var i = 0; i < 14; i++)
+      {
+        json[i] = JSON.parse(json[i]);
+        json[i] = json[i].map(Number);
+      }
+
+    var stimmen = [...json[k] ];
+    var ergebnis = [...stimmen ];
+
+    // Setze alle Stimmen unter der 5% Hürde auf 0 und ermittle den Divisor
+    var hürde = 0.05;
+    var summeStimmen = 0;
+    for (var i of ergebnis)
+      {
+        summeStimmen += i;
+      }
+    var summeErgebnis = 0;
+    for (let [i, j] of ergebnis.entries())
+      {
+        if (j < summeStimmen * hürde)
+          {
+            ergebnis[i] = 0;
+          }
+        else
+          {
+            summeErgebnis += j;
+          }
+      }
+
+    // Ermittlung der vollen Sitze
+    var sitze = 20;
+    var übrig = sitze;
+    var rest = [];
+    ergebnis.forEach((element, index) => {
+      rest.push(((element / summeErgebnis) * sitze) % 1);
+      ergebnis[index] = Math.floor((element / summeErgebnis) * sitze);
+      übrig -= ergebnis[index];
+    });
+
+    // Verteilung der Reste
+    while (übrig != 0)
+      {
+        var gleichstand = false;
+        var max = 0;
+        var lose = 1;
+        for (i of rest)
+          {
+            if (i == max)
+              {
+                gleichstand = true;
+                lose++;
+              }
+            else if (i > max)
+              {
+                gleichstand = false;
+                max = i;
+                lose = 1;
+              }
+          }
+        if (gleichstand == false)
+          {
+            ergebnis[rest.indexOf(max)] = ergebnis[rest.indexOf(max)] + 1;
+            rest[rest.indexOf(max)] = 0;
+            übrig--;
+          }
+        else if (übrig >= lose)
+          {
+            while (lose > 0)
+              {
+                ergebnis[rest.indexOf(max)] = ergebnis[rest.indexOf(max)] + 1;
+                rest[rest.indexOf(max)] = 0;
+                übrig--;
+                lose--;
+              }
+          }
+
+        // Theoretisch würden hier verlost werden. Bei einer aktiven
+        // Wahl ist das natürlich vor Wahlende unmöglich da sich das
+        // Ergebnis bei jedem Gleichstand neu erlosen würde.
+        // Die fehlenden Sitze werden einfach vorerst ignoriert, in
+        // der Konsole wird der Vollständigkeithalber aber angezeigt
+        // dass hier ein Gleichstand herrscht.
+        else
+          {
+            console.log("Gleichstand = " + gleichstand);
+            break;
+          }
+      }
+
+    // Diagramme Klasse Partei
+    var partei = [
+      {
+        name : "DPP",
+        wähler : stimmen[0],
+        mandate : ergebnis[0],
+        farbe : "#FFFF00"
+      },
+      {
+        name : "MUT",
+        wähler : stimmen[1],
+        mandate : ergebnis[1],
+        farbe : "#ffa500"
+      },
+      {
+        name : "NERD",
+        wähler : stimmen[2],
+        mandate : ergebnis[2],
+        farbe : "#ff0000"
+      },
+      {
+        name : "LUST",
+        wähler : stimmen[3],
+        mandate : ergebnis[3],
+        farbe : "#8b0000"
+      },
+      {
+        name : "FFF",
+        wähler : stimmen[4],
+        mandate : ergebnis[4],
+        farbe : "#808080"
+      },
+      {
+        name : "fNEP",
+        wähler : stimmen[5],
+        mandate : ergebnis[5],
+        farbe : "#000000"
+      }
+    ];
+    if (übrig !== 0)
+      {
+        partei.pop(
+            { name : "Losentscheid", mandate : übrig, farbe : "#fff000" });
+      }
+
+    // Donut Diagramm
+    let ctx = document.getElementById("donut").getContext("2d");
+    let winkel = Math.PI;
+    ctx.clearRect(0, 0, 1000, 1000);
+    for (let party of partei)
+      {
+        let anteil = (party.mandate / (sitze * 2)) * 2 * Math.PI;
+        ctx.beginPath();
+        ctx.arc(100, 100, 100, winkel, winkel + anteil);
+        winkel += anteil;
+        ctx.lineTo(100, 100);
+        ctx.fillStyle = party.farbe;
+        ctx.fill();
+      }
+    ctx.beginPath();
+    ctx.arc(100, 100, 40, Math.PI, 0);
+    ctx.lineTo(100, 100);
+    ctx.fillStyle = "#ffffff";
+    ctx.fill();
+
+    // Balken Diagramm
+    let ctx2 = document.getElementById("balken").getContext("2d");
+    let balken = 0;
+    ctx2.clearRect(0, 0, 1000, 1000);
+    for (let party of partei)
+      {
+        ctx2.fillStyle = party.farbe;
+        ctx2.fillRect(balken += 40, 100, 20,
+                      (-party.wähler / summeStimmen) * 200);
+      }
+
+  };
+  xhr.send();
+}
