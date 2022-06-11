@@ -1,94 +1,133 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
     <meta name="author" content="Team MathesFeilWetzl" charset="utf-8">
-    <meta name="description" content="Umfrage">
-    <title>Umfrage</title>
-    <style media="screen" type="text/css">
-        header {
-            display: flex;
-            justify-content: center;
-        }
-        }
-        section {
-            float: left;
-        }
-        fieldset {
-            min-height: 200px;
-            display:grid;
-            grid: auto / auto auto auto;
-        }
-        footer {
-            clear: left;
-            padding-top: 5px;
-        }
-        img {
-            max-width: 150px;
-            max-height: 150px;
-        }
-    </style>
-</head>
-<body>  
-    <main title="Content">
-        <section title="Kandidaten" action="poll.php">
-            <!-- Statisch - foreach-Schleife fuer alle Kandidaten aus DB waere schoener -->
-            <fieldset>
-                <legend>Kandidaten</legend>
-                <figure id="1">
-                    <img src="candidate.png"  alt="Kandidat">
-                    <figcaption>Kandidat 1</figcaption>
-                </figure>
-                <figure id="2">
-                    <img src="candidate.png"  alt="Kandidat">
-                    <figcaption>Kandidat 2</figcaption>
-                </figure>
-                <figure id="3">
-                    <img src="candidate.png"  alt="Kandidat">
-                    <figcaption>Kandidat 3</figcaption>
-                </figure>
-                <figure id="4">
-                    <img src="candidate.png"  alt="Kandidat">
-                    <figcaption>Kandidat 4</figcaption>
-                </figure>
-                <figure id="5">
-                    <img src="candidate.png"  alt="Kandidat">
-                    <figcaption>Kandidat 5</figcaption>
-                </figure>
-            </fieldset>
-    </main>
-    <footer title="Disclaimer">
-        <p> Art. 38</p>
-        <ul>
-        <li><data value="200">(1) Die Abgeordneten des Deutschen Bundestages werden in allgemeiner, unmittelbarer, freier, gleicher und geheimer Wahl gewählt. Sie sind Vertreter des ganzen Volkes, an Aufträge und Weisungen nicht gebunden und nur ihrem Gewissen unterworfen.</data></li>
-        <li><data value="201">(2) Wahlberechtigt ist, wer das achtzehnte Lebensjahr vollendet hat; wählbar ist, wer das Alter erreicht hat, mit dem die Volljährigkeit eintritt.</data></li>
-        <li><data value="202">(3) Das Nähere bestimmt ein Bundesgesetz.</data></li>
-        </ul>
-        gemäß <a href="https://www.gesetze-im-internet.de/gg/art_38.html" title="Grundgesetz">Grundgesetz.</a>
-        <hr>
-        <button onclick="location.href = 'main.html';" >Let's go back...Home</button>
-    </footer>
+    <title>Stimmangabe</title>
+    <link rel="stylesheet" href="style.css" >
+  </head>
+  <body>
+    <div class="page">
 
+      <div class="leftBox">
 
+        <div class="rightBox">
 
-    <!-- Hidden InputField&Submitbutton - Notwendig fuer Uebergabe der Daten an PHP & mySQL -->
-    <form name="stimmen" id="stimmen" method="post" action="poll.php">
+    <!-- linker Bereich -->
+
+          <div id="titleBar">
+            <h2>Personendaten:</h2>
+            <br>
+            <hr color="orange">
+          </div>
+
+          <main title="InputElements">
+          <fieldset>
+            <form name="benutzerdaten" method="post" action="poll.php">
+              <label for="vorname" id="label">Vorname*</label>
+              <input type="text" id ="vorname" name="vorname"/>
+              </p>
+              <label for="nachname" id="label">Nachname*</label>
+              <input type="text" id ="nachname" name="nachname"/>
+              </p>
+              <label for="geburtsdatum" id="label">Geburtsdatum*</label>
+              <input type="date" id ="geburtsdatum" name="geburtsdatum"/>
+              </p>
+              <!-- Hidden Input Fields fuer Merge der beiden Forms "benuzerdaten" und "studiengang" zu einem POST-Request -->
+              <input type="hidden" id ="idTemp" name="id"/>
+              <input type="hidden" id ="idTemp2" name="studiengang"/>
+
+              
+              <label for="studiengang" id="label">Studiengang*</label>
+              <select name="studiengang" id="studiengang">
+                <optgroup label="Fakultät Informatik">
+                  <option disabled selected value>- bitte auswählen -</option>
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Informatik">Informatik</option>
+                  <option value="Medieninformatik">Medieninformatik</option>
+                  <option value="Mobile Computing">Mobile Computing</option>
+                  <option value="Wirtschaftsinformatik">Wirtschaftsinformatik</option>
+                  <option value="Master Informatik">Master Informatik</option>
+                  <option value="Master Applied Research in Computer Science">Master Applied Research in Computer Science</option>
+                  <option value="Master Software Engineering for Industrial Applications">Master Software Engineering for Industrial Applications</option>
+                  <option value="Verwaltungsinformatik">Verwaltungsinformatik</option>
+                <optgroup label="Sonstiges">
+                  <option value="andere Fakultät">andere Fakultät</option>
+              </select>
+            </form>
+          </fieldset>
+          </main>
+
+          <footer title="Paragraph">
+              <p> <b>Art. 38</b></p>
+              <ul>
+              <li><data value="200">(1) Die Abgeordneten des Deutschen Bundestages werden in allgemeiner, unmittelbarer, freier, gleicher und geheimer Wahl gewählt. <br>Sie sind Vertreter des ganzen Volkes, an Aufträge und Weisungen nicht gebunden und nur ihrem Gewissen unterworfen.</data></li>
+              <li><data value="201">(2) Wahlberechtigt ist, wer das achtzehnte Lebensjahr vollendet hat; <br>wählbar ist, wer das Alter erreicht hat, mit dem die Volljährigkeit eintritt.</data></li>
+              <li><data value="202">(3) Das Nähere bestimmt ein Bundesgesetz.</data></li>
+              </ul>
+              gemäß <a href="https://www.gesetze-im-internet.de/gg/art_38.html" title="Grundgesetz">Grundgesetz.</a>
+              <br><br>
+              <hr color="orange">
+              <br>
+              <!-- Button "Stimme abgeben" fuer Submit der Form mittels Function "sendeDaten()" -->
+              <a onclick="sendeDaten()" id="button">Stimme abgeben</a>
+          </footer>
+        </div>
+
+    <!-- rechter Bereich -->
+
+        <div class="toggle-buttons">
+          <input type="radio" id="1" name="eine Stimme"/>
+          <label for="1"><b>DPP</b><br>Die Party-Partei</label>
+          <input type="radio" id="2" name="eine Stimme"/>
+          <label for="2"><b>MUT</b><br>Mensch-Umwelt-Tierschutz</label>
+          <input type="radio" id="3" name="eine Stimme"/>
+          <label for="3"><b>NERD</b><br>Netzwerk engagierter Richter und Dichter</label>
+          <input type="radio" id="4" name="eine Stimme"/>
+          <label for="4"><b>LUST</b><br>Liste unabhängiger Studierender</label>
+          <input type="radio" id="5" name="eine Stimme"/>
+          <label for="5"><b>FFF</b><br>Freibier for Future</label>
+          <input type="radio" id="6" name="eine Stimme"/>
+          <label for="6"><b>fNEP</b><br>für Nicht-/Erst- und Protestwähler</label>
+        </div>
+
+      </div>
+    </div>
+  </body>
+
+  <!-- Hidden InputField&Submitbutton - Notwendig fuer Uebergabe der ID des Kandidaten an PHP & mySQL -->
+  <form name="stimmen" id="stimmen" method="post" action="poll.php">
     <input type="hidden" name="id" id="id">
     <input type="hidden" name="Absenden" id="Absenden" value="Absenden">
-    </form>
+  </form>
+  <script type="text/javascript">
+    let candidates = document.querySelectorAll("input")
+    candidates.forEach(item => {
+      if (item.type == "radio")
+        item.onclick = (event) => {
+          document.getElementById("id").value = item.id;
+          /* Bei Klick auf Schaltflaeche der jeweiligen Partei (Kandidaten) wird die ID der Schaltflaeche (=ID der Partei) aus dem HiddenInputField geholt
+          und der Value in das InputField gemerged, welches per POST-Request submitted wird  */
+          document.getElementById("idTemp").value = document.getElementById("id").value;
 
-    <script type="text/javascript">
-        let candidates = document.querySelectorAll("figure")
-        candidates.forEach(item => {
-            item.onclick = (event) => {
-                document.getElementById("id").value = item.id;
-                submitData()
-                }
-            
-            function submitData() {
-                document.getElementById("stimmen").submit();
             }
-            })
-    </script>
-  
-</body>
+        })  
+        
+        function sendeDaten()
+        {  
+          // Pruefung vor Absenden, ob eine Partei gewaehlt wurde und Felder fuer Vorname, Nachname, Geburtstdatum und Studiengang ausgeawehtl wurden
+          if(document.getElementById("vorname").value.length !== 0 && document.getElementById("nachname").value.length !== 0 && document.getElementById("geburtsdatum").value.length !== 0 && studiengang.value.length !==0 && (id.value.length !==0))
+          {  
+            // Setzen des Wertes "Studiengang" durch lesen des Temp-Formulars aus der linken Haelfte
+            document.getElementById("idTemp2").value = document.getElementById("studiengang").value
+            // Submit der Form
+            document.benutzerdaten.submit();
+          }
+          else 
+          {
+            alert("Bitte alle Pflichtfelder ausfüllen und ihrer Demokratischen Pflicht nachkommen indem Sie eine Partei wählen.");
+          }
+        }
+  </script>
+
 </html>
