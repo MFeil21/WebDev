@@ -18,18 +18,15 @@ if ($verbindung -> connect_error) {
   $ergebnis0 = mysqli_fetch_all(mysqli_query($verbindung, $abfrage));
 
   //Alter U 18 
-  $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
-  // $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND TIMESTAMPDIFF(YEAR, geburtsdatum, CURDATE()) <18 GROUP BY partei;"
+  $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND TIMESTAMPDIFF(YEAR, geburtsdatum, CURDATE()) <18 GROUP BY partei";
   $ergebnis1 = mysqli_fetch_all(mysqli_query($verbindung, $abfrage));
 
   //Alter 18-30
-  $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
-  // $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND TIMESTAMPDIFF(YEAR, geburtsdatum, CURDATE()) BETWEEN 18 AND 30 GROUP BY partei;"
+  $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND TIMESTAMPDIFF(YEAR, geburtsdatum, CURDATE()) BETWEEN 18 AND 30 GROUP BY partei";
   $ergebnis2 = mysqli_fetch_all(mysqli_query($verbindung, $abfrage));
 
   //Alter Ü 30
-  $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
-  // $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND TIMESTAMPDIFF(YEAR, geburtsdatum, CURDATE()) >30 GROUP BY partei;"
+  $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND TIMESTAMPDIFF(YEAR, geburtsdatum, CURDATE()) >30 GROUP BY partei";
   $ergebnis3 = mysqli_fetch_all(mysqli_query($verbindung, $abfrage));
 
   //Studiengang Computer Science
