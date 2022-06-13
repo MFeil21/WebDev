@@ -19,7 +19,7 @@ $studiengang = $_POST['studiengang'];
 $id = $_POST['id'];
 
 // SQL-Insert = Abgabe der Stimme
-$sqldbcommand = "INSERT INTO db_users (`Id`, `vorname`, `nachname`, `geburtsdatum`, `studiengang`, `partei`) 
+$sqldbcommand = "INSERT INTO db_users (`Id`, `vorname`, `nachname`, `geburtsdatum`, `studiengang`, `partei`)
 VALUES ('0', '$vorname', '$nachname', '$geburtsdatum', '$studiengang', '$id')";
 if ($verbindung->query($sqldbcommand) === TRUE) {
     echo "Neuer Eintrag erfolgreich erstellt";

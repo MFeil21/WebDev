@@ -17,7 +17,7 @@ if ($verbindung -> connect_error) {
   $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL GROUP BY partei";
   $ergebnis0 = mysqli_fetch_all(mysqli_query($verbindung, $abfrage));
 
-  //Alter U 18 
+  //Alter U 18
   $abfrage = "SELECT COUNT(*) FROM db_users WHERE partei IS NOT NULL AND TIMESTAMPDIFF(YEAR, geburtsdatum, CURDATE()) <18 GROUP BY partei";
   $ergebnis1 = mysqli_fetch_all(mysqli_query($verbindung, $abfrage));
 
@@ -90,5 +90,5 @@ if ($verbindung -> connect_error) {
   //Echo die Arrays an die POST Request
   echo json_encode($arrays);
   mysqli_close($verbindung);
-      
+
 ?>

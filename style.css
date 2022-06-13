@@ -171,23 +171,25 @@ input:focus + label {
   margin-left: 0px;
   margin-top: 5px;
 }
+
 .NavBar ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #fe864c;
+
 }
 
 .NavBar li {
   float: left;
+  padding: 10px;
 }
 
 .NavBar li a {
-  display: block;
+  display: inline;
   color: white;
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
 }
 
@@ -227,13 +229,11 @@ a:hover {
   padding: 0;
   width: 600px;
   height: 450px;
-  /*border-style: dotted;*/
-  /*display: inline-flex;*/
   display: block;
-  margin: 0 auto;
 }
 
 #chartsText {
+  margin-top: 25px;
   color: grey;
   font-family: Verdana;
   font-size: 14px;
@@ -257,22 +257,22 @@ a:hover {
 }
 
 .legend .partei1 {
-  background-color: yellow;
+  background-color: #FF0000;
 }
 .legend .partei2 {
-  background-color: orange;
+  background-color: #FF7F00	;
 }
 .legend .partei3 {
-  background-color: red;
+  background-color: #FFFF00	;
 }
 .legend .partei4 {
-  background-color: darkred;
+  background-color: #00FF00	;
 }
 .legend .partei5 {
-  background-color: grey;
+  background-color: #0000FF	;
 }
 .legend .partei6 {
-  background-color: black;
+  background-color: #4B0082	;
 }
 
 #filter {
@@ -284,7 +284,7 @@ a:hover {
   grid-gap: 0px;
   border-radius: 5px;
   color: #ef6c00;
-  /*border-style: dotted;*/
+  width: 35%;
 }
 
 #filterText {
@@ -293,24 +293,23 @@ a:hover {
   font-size: 14px;
   color: #ef6c00;
   font-family: Verdana;
-  /*border-style: dotted;*/
 }
 
-#btn0, #btn1, #btn2, #btn3, #btn4  {
+#btn1, #btn2, #btn3, #btn4, #btn5, #btn6, #btn7, #btn8, #btn9, #btn10, #btn11, #btn12, #btn13 {
   border-color: #fe864c;
   background-color: #fe864a;
   border-radius: 10px;
-  padding: 5px;
+  padding: 2px;
   border-style: double;
-  margin: 10px;
+  margin: 5px;
   width: 350px;
 }
 
-#btn0, #btn1, #btn2, #btn3, #btn4 {
+#btn1, #btn2, #btn3, #btn4, #btn5, #btn6, #btn7, #btn8, #btn9, #btn10, #btn11, #btn12, #btn13{
   transition-duration: 1s;
 }
 
-#btn0:hover, #btn1:hover, #btn2:hover, #btn3:hover, #btn4:hover {
+#btn1:hover, #btn2:hover, #btn3:hover, #btn4:hover, #btn5:hover, #btn6:hover, #btn7:hover, #btn8:hover, #btn9:hover, #btn10:hover, #btn11:hover, #btn12:hover, #btn13:hover {
   background-color: white;
   color: #ef6c00;
 }
