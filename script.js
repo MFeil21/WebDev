@@ -58,6 +58,7 @@ function post (k)
       {
         json[i] = JSON.parse(json[i]);
         json[i] = json[i].map(Number);
+        console.log(json[k]);
       }
 
     var stimmen = [...json[k] ];
@@ -241,31 +242,33 @@ function post (k)
             ctx2.fillText( Math.round(party.wähler*1000/summeStimmen)/10 + " %", balken+10, 120)
           }
       }
-
   };
   xhr.send();
 }
 
-function fun1() {
-  var ziel = document.getElementById("filterAlter");
-  ziel.style.display = 'none';
+function fun1()
+  {
+      var ziel = document.getElementById("filterAlter");
+      ziel.style.display = 'none';
 
-  ziel = document.getElementById("filterStudiengang");
-  ziel.style.display = 'none';
-}
+      ziel = document.getElementById("filterStudiengang");
+      ziel.style.display = 'none';
+  }
 
-function fun2() {
-  var ziel = document.getElementById("filterAlter");
-  ziel.style.display = 'block';
+function fun2()
+  {
+      var ziel = document.getElementById("filterAlter");
+      ziel.style.display = 'block';
 
-  ziel = document.getElementById("filterStudiengang");
-  ziel.style.display = 'none';
-}
+      ziel = document.getElementById("filterStudiengang");
+      ziel.style.display = 'none';
+  }
 
-function fun3() {
-  var ziel = document.getElementById("filterAlter");
-  ziel.style.display = 'none';
+function fun3()
+  {
+      var ziel = document.getElementById("filterAlter");
+      ziel.style.display = 'none';
 
-  ziel = document.getElementById("filterStudiengang");
-  ziel.style.display = 'block';
-}
+      ziel = document.getElementById("filterStudiengang");
+      ziel.style.display = 'block';
+  }
