@@ -3,8 +3,11 @@ window.post(0);
 window.onload = fun1;
 
 //Event Handler
+
+/*
 let btn0 = document.getElementById("btn0")
 btn0.addEventListener('click', event => { window.post(0); });
+*/
 
 let btn1 = document.getElementById("btn1")
 btn1.addEventListener('click', event => { window.post(1); });
@@ -58,7 +61,6 @@ function post (k)
       {
         json[i] = JSON.parse(json[i]);
         json[i] = json[i].map(Number);
-        console.log(json[k]);
       }
 
     var stimmen = [...json[k] ];
@@ -145,6 +147,10 @@ function post (k)
           }
       }
 
+      //console.log(stimmen);
+
+      //console.log(ergebnis);
+
     // Diagramme Klasse Partei
     var partei = [
       {
@@ -193,7 +199,7 @@ function post (k)
             farbe : "#4d4df0"
           });
       }
-
+      console.log(partei);
     // Donut Diagramm
     let ctx = document.getElementById("donut").getContext("2d");
     let winkel = Math.PI;
@@ -201,20 +207,34 @@ function post (k)
     ctx.clearRect(0, 0, 1000, 1000);
     for (let party of partei)
       {
+        if(party.name=="Losentscheid"){
+          console.log("Los");
+        }
+
         let anteil = (party.mandate / (sitze * 2)) * 2 * Math.PI;
         ctx.beginPath();
+        if(party.name=="Losentscheid"){
+          console.log(anteil);
+        }
         ctx.arc(150, 150, 150, winkel, winkel + anteil);
         winkel += anteil;
         ctx.lineTo(150, 150);
         ctx.fillStyle = party.farbe;
         ctx.fill();
+            if(party.name=="Losentscheid") console.log(ctx.fillstyle);
         if(party.mandate > 0)
           {
             ctx.fillRect(400, reihe +11 , 10, 10);
             ctx.fillStyle = "#000000";
+            console.log(party);
+
+            console.log(ctx.fillstyle);
+
             ctx.font = "12px Arial";
             if(party.name === "Losentscheid")
               {
+                console.log("");
+
                 ctx.fillText(party.mandate === 1 ? party.mandate + " Sitz zu verlosen" : party.mandate + " Sitze zu verlosen" ,420, reihe += 20);
               } else ctx.fillText(party.mandate === 1 ? party.mandate + " Sitz" : party.mandate + " Sitze" ,420, reihe += 20);
           }
@@ -248,6 +268,8 @@ function post (k)
 
 function fun1()
   {
+      post(0);
+      //alert("1");
       var ziel = document.getElementById("filterAlter");
       ziel.style.display = 'none';
 
@@ -257,6 +279,7 @@ function fun1()
 
 function fun2()
   {
+      post(0);
       var ziel = document.getElementById("filterAlter");
       ziel.style.display = 'block';
 
@@ -266,6 +289,7 @@ function fun2()
 
 function fun3()
   {
+      post(0);
       var ziel = document.getElementById("filterAlter");
       ziel.style.display = 'none';
 

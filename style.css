@@ -295,7 +295,7 @@ a:hover {
   font-family: Verdana;
 }
 
-#btn0, #btn1, #btn2, #btn3, #btn4, #btn5, #btn6, #btn7, #btn8, #btn9, #btn10, #btn11, #btn12, #btn13 {
+#btn1, #btn2, #btn3, #btn4, #btn5, #btn6, #btn7, #btn8, #btn9, #btn10, #btn11, #btn12, #btn13 {
   border-color: #fe864c;
   background-color: #fe864a;
   border-radius: 10px;
@@ -305,11 +305,11 @@ a:hover {
   width: 350px;
 }
 
-#btn0, #btn1, #btn2, #btn3, #btn4, #btn5, #btn6, #btn7, #btn8, #btn9, #btn10, #btn11, #btn12, #btn13{
+#btn1, #btn2, #btn3, #btn4, #btn5, #btn6, #btn7, #btn8, #btn9, #btn10, #btn11, #btn12, #btn13{
   transition-duration: 1s;
 }
 
-#btn0:hover, #btn1:hover, #btn2:hover, #btn3:hover, #btn4:hover, #btn5:hover, #btn6:hover, #btn7:hover, #btn8:hover, #btn9:hover, #btn10hover, #btn11:hover, #btn12:hover, #btn13:hover {
+#btn1:hover, #btn2:hover, #btn3:hover, #btn4:hover, #btn5:hover, #btn6:hover, #btn7:hover, #btn8:hover, #btn9:hover, #btn10hover, #btn11:hover, #btn12:hover, #btn13:hover {
   background-color: white;
   color: #ef6c00;
 }
