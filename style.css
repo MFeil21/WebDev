@@ -178,10 +178,12 @@ input:focus + label {
   padding: 0;
   overflow: hidden;
   background-color: #fe864c;
+
 }
 
 .NavBar li {
   float: left;
+  padding: 10px;
 }
 
 .NavBar li a {
@@ -227,13 +229,11 @@ a:hover {
   padding: 0;
   width: 600px;
   height: 450px;
-  /*border-style: dotted;*/
-  /*display: inline-flex;*/
   display: block;
-  margin: 0 auto;
 }
 
 #chartsText {
+  margin-top: 25px;
   color: grey;
   font-family: Verdana;
   font-size: 14px;
@@ -284,7 +284,6 @@ a:hover {
   grid-gap: 0px;
   border-radius: 5px;
   color: #ef6c00;
-  border-style: dotted;
   width: 35%;
 }
 
