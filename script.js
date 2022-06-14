@@ -1,3 +1,4 @@
+// TeamMathesFeilWetzl
 // Initialer Post mit dem Ergebnis für Alle Stimmen
 window.post(0);
 window.onload = fun1;
