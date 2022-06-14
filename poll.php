@@ -1,4 +1,6 @@
 <?php
+// TeamMathesFeilWetzl
+
 //Params DB Connection
 $servername = "localhost";
 $username = "root";

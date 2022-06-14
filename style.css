@@ -1,3 +1,4 @@
+/* TeamMathesFeilWetzl */
 html, body {
   width: 100%;
   height: 100%;
@@ -257,22 +258,22 @@ a:hover {
 }
 
 .legend .partei1 {
-  background-color: yellow;
+  background-color: #FF0000;
 }
 .legend .partei2 {
-  background-color: orange;
+  background-color: #FF7F00	;
 }
 .legend .partei3 {
-  background-color: red;
+  background-color: #FFFF00	;
 }
 .legend .partei4 {
-  background-color: darkred;
+  background-color: #00FF00	;
 }
 .legend .partei5 {
-  background-color: grey;
+  background-color: #0000FF	;
 }
 .legend .partei6 {
-  background-color: black;
+  background-color: #4B0082	;
 }
 
 #filter {
@@ -309,7 +310,7 @@ a:hover {
   transition-duration: 1s;
 }
 
-#btn1:hover, #btn2:hover, #btn3:hover, #btn4:hover, #btn5:hover, #btn6:hover, #btn7:hover, #btn8:hover, #btn9:hover, #btn10hover, #btn11:hover, #btn12:hover, #btn13:hover {
+#btn1:hover, #btn2:hover, #btn3:hover, #btn4:hover, #btn5:hover, #btn6:hover, #btn7:hover, #btn8:hover, #btn9:hover, #btn10:hover, #btn11:hover, #btn12:hover, #btn13:hover {
   background-color: white;
   color: #ef6c00;
 }
