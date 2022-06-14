@@ -6,7 +6,7 @@ Datei "db_users.sql" nach C:\xampp\mysql\bin kopieren
 CMD öffnen:
 cd C:\xampp\mysql\bin
 mysql -u root -p db_users < db_users.sql
-//
+///
 DB-Export auf der CMD(Windows):
 cd C:\xampp\mysql\bin
 mysqldump -u root -p db_users > db_users.sql
