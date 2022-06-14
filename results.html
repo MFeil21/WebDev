@@ -17,10 +17,10 @@
           <nav class="NavBar" style="--items: 4;">
             <ul>
               <!-- ToDo: Buttons aus Sektion "Charts" (Line28-32) entfernen und Funktionalitaet uebernehmen | Bisher Eventlistener in script.js definiert -->
-              <li><a id="btn0" onclick="fun1()" class="active" href="#Wahlergebnis">Wahlergebnis mit Sitzverteilung</a></li>
+              <li><a onclick="fun1()" class="active" href="#Wahlergebnis">Wahlergebnis mit Sitzverteilung</a></li>
               <!--<li><a href="#news">Sitzverteilung</a></li>-->
-              <li><a id="btn0" onclick="fun2()" href="#contact">Auswertung nach Alter</a></li>
-              <li><a id="btn0" onclick="fun3()" href="#about">Auswertung nach Studiengang</a></li>
+              <li><a onclick="fun2()" href="#contact">Auswertung nach Alter</a></li>
+              <li><a onclick="fun3()" href="#about">Auswertung nach Studiengang</a></li>
             </ul>
           </nav>
 
@@ -30,11 +30,12 @@
             <p id="chartsText">Sitzverteilung:</p><br>
             <canvas id="donut" width="600"></canvas>
             <hr color="orange" width="600px" height="2px">
-            
+
             <p id="chartsText">Wahlergebnis:</p>
             <canvas id="balken" width="600"></canvas>
           </div>
           <hr color="orange" width="600px" height="2px">
+
           <!-- Legend -->
           <footer>
               <ul class="legend">
@@ -69,7 +70,7 @@
               <button id="btn11" class="btn">Master Software Engineering for Industrial Applications</button>
               <button id="btn12" class="btn">Verwaltungsinformatik</button>
               <button id="btn13" class="btn">andere Fakultät</button>
-            </div>
+          </div>
         </div>
 
       </div>

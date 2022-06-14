@@ -2,10 +2,7 @@
 window.post(0);
 window.onload = fun1;
 
-//Event Handler
-let btn0 = document.getElementById("btn0")
-btn0.addEventListener('click', event => { window.post(0); });
-
+// Event Handler
 let btn1 = document.getElementById("btn1")
 btn1.addEventListener('click', event => { window.post(1); });
 
@@ -45,6 +42,33 @@ btn12.addEventListener('click', event => { window.post(12); });
 let btn13 = document.getElementById("btn13")
 btn13.addEventListener('click', event => { window.post(13); });
 
+// Navbar Events
+function fun1 ()
+{
+  post (0);
+  let ziel = document.getElementById("filterAlter");
+  ziel.style.display = 'none';
+  ziel = document.getElementById("filterStudiengang");
+  ziel.style.display = 'none';
+}
+function fun2 ()
+{
+  post (0);
+  let ziel = document.getElementById("filterAlter");
+  ziel.style.display = 'block';
+  ziel = document.getElementById("filterStudiengang");
+  ziel.style.display = 'none';
+}
+function fun3 ()
+{
+  post (0);
+  let ziel = document.getElementById("filterAlter");
+  ziel.style.display = 'none';
+  ziel = document.getElementById("filterStudiengang");
+  ziel.style.display = 'block';
+}
+
+// POST Funktion
 function post (k)
 {
 
@@ -59,7 +83,6 @@ function post (k)
         json[i] = JSON.parse(json[i]);
         json[i] = json[i].map(Number);
       }
-
     var stimmen = [...json[k] ];
     var ergebnis = [...stimmen ];
 
@@ -133,13 +156,9 @@ function post (k)
         // Theoretisch würden hier verlost werden. Bei einer aktiven
         // Wahl ist das natürlich vor Wahlende unmöglich da sich das
         // Ergebnis bei jedem Gleichstand neu erlosen würde.
-        // Die fehlenden Sitze werden einfach vorerst ignoriert, in
-        // der Konsole wird der Vollständigkeithalber aber angezeigt
-        // dass hier ein Gleichstand herrscht.
+        // Die fehlenden Sitze werden einfach vorerst belassen.
         else
           {
-            console.log("Gleichstand = " + gleichstand + " :: " +
-                            übrig + " Sitz(e) noch zu verlosen."     );
             break;
           }
       }
@@ -150,46 +169,46 @@ function post (k)
         name : "DPP",
         wähler : stimmen[0],
         mandate : ergebnis[0],
-        farbe : "#FFFF00"
+        farbe : "#FF0000"
       },
       {
         name : "MUT",
         wähler : stimmen[1],
         mandate : ergebnis[1],
-        farbe : "#ffa500"
+        farbe : "#FF7F00"
       },
       {
         name : "NERD",
         wähler : stimmen[2],
         mandate : ergebnis[2],
-        farbe : "#ff0000"
+        farbe : "#FFFF00"
       },
       {
         name : "LUST",
         wähler : stimmen[3],
         mandate : ergebnis[3],
-        farbe : "#8b0000"
+        farbe : "#00FF00"
       },
       {
         name : "FFF",
         wähler : stimmen[4],
         mandate : ergebnis[4],
-        farbe : "#808080"
+        farbe : "#0000FF"
       },
       {
         name : "fNEP",
         wähler : stimmen[5],
         mandate : ergebnis[5],
-        farbe : "#000000"
+        farbe : "#4B0082"
       }
     ];
     if (übrig !== 0)
       {
         partei.push(
-          {
-            name : "Losentscheid",
-            mandate : übrig,
-            farbe : "#4d4df0"
+          { 
+            name : "Losentscheid", 
+            mandate : übrig, 
+            farbe : "#d23c95" 
           });
       }
 
@@ -198,6 +217,7 @@ function post (k)
     let winkel = Math.PI;
     let reihe = 0;
     ctx.clearRect(0, 0, 1000, 1000);
+    ctx.font = "14px Arial";
     for (let party of partei)
       {
         let anteil = (party.mandate / (sitze * 2)) * 2 * Math.PI;
@@ -207,15 +227,21 @@ function post (k)
         ctx.lineTo(150, 150);
         ctx.fillStyle = party.farbe;
         ctx.fill();
-        if(party.mandate > 0)
+        if (party.mandate > 0)
           {
-            ctx.fillRect(400, reihe +11 , 10, 10);
+            ctx.fillRect(400, reihe + 11, 14, 14);
             ctx.fillStyle = "#000000";
-            ctx.font = "12px Arial";
-            if(party.name === "Losentscheid")
+            if (party.name === "Losentscheid")
               {
-                ctx.fillText(party.mandate === 1 ? party.mandate + " Sitz zu verlosen" : party.mandate + " Sitze zu verlosen" ,420, reihe += 20);
-              } else ctx.fillText(party.mandate === 1 ? party.mandate + " Sitz" : party.mandate + " Sitze" ,420, reihe += 20);
+                ctx.fillText(party.mandate === 1
+                                 ? party.mandate + " Sitz zu verlosen"
+                                 : party.mandate + " Sitze zu verlosen",
+                             420, reihe += 21);
+              }
+            else
+              ctx.fillText(party.mandate === 1 ? party.mandate + " Sitz"
+                                               : party.mandate + " Sitze",
+                           420, reihe += 21);
           }
       }
     ctx.beginPath();
@@ -225,7 +251,6 @@ function post (k)
     ctx.fill();
 
     // Balken Diagramm
-
     let ctx2 = document.getElementById("balken").getContext("2d");
     let balken = 0;
     ctx2.clearRect(0, 0, 1000, 1000);
@@ -234,38 +259,15 @@ function post (k)
         if (party.name !== "Losentscheid")
           {
             ctx2.fillStyle = party.farbe;
-            ctx2.fillRect(balken += 80, 100, 40,
-                          (-party.wähler / summeStimmen) * 150);
+            ctx2.fillRect(balken += 80, 135, 40,
+                          (-party.wähler / summeStimmen) * 300);
             ctx2.fillStyle = "#000000";
             ctx2.font = "15px Arial";
-            ctx2.fillText( Math.round(party.wähler*1000/summeStimmen)/10 + " %", balken+10, 120)
+            ctx2.fillText(Math.round(party.wähler * 1000 / summeStimmen) / 10
+                              + " %",
+                          balken +4, 150)
           }
       }
-
   };
   xhr.send();
-}
-
-function fun1() {
-  var ziel = document.getElementById("filterAlter");
-  ziel.style.display = 'none';
-
-  ziel = document.getElementById("filterStudiengang");
-  ziel.style.display = 'none';
-}
-
-function fun2() {
-  var ziel = document.getElementById("filterAlter");
-  ziel.style.display = 'block';
-
-  ziel = document.getElementById("filterStudiengang");
-  ziel.style.display = 'none';
-}
-
-function fun3() {
-  var ziel = document.getElementById("filterAlter");
-  ziel.style.display = 'none';
-
-  ziel = document.getElementById("filterStudiengang");
-  ziel.style.display = 'block';
 }
