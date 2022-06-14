@@ -164,6 +164,10 @@ function post (k)
           }
       }
 
+      //console.log(stimmen);
+
+      //console.log(ergebnis);
+
     // Diagramme Klasse Partei
     var partei = [
       {
@@ -212,7 +216,7 @@ function post (k)
             farbe : "#d23c95" 
           });
       }
-
+      console.log(partei);
     // Donut Diagramm
     let ctx = document.getElementById("donut").getContext("2d");
     let winkel = Math.PI;
@@ -221,8 +225,15 @@ function post (k)
     ctx.font = "14px Arial";
     for (let party of partei)
       {
+        if(party.name=="Losentscheid"){
+          console.log("Los");
+        }
+
         let anteil = (party.mandate / (sitze * 2)) * 2 * Math.PI;
         ctx.beginPath();
+        if(party.name=="Losentscheid"){
+          console.log(anteil);
+        }
         ctx.arc(150, 150, 150, winkel, winkel + anteil);
         winkel += anteil;
         ctx.lineTo(150, 150);
